@@ -11,5 +11,5 @@ module.exports = {
   ReactionRoleType: require("./reaction-role/constants.js").ReactionRoleType,
   RequirementType: require("./reaction-role/constants.js").RequirementType,
   ActionType: require("./reaction-role/constants.js").ActionType,
-  findRecursively: require("./util/find").findRecursively
+  findRecursively: require("./util/find").findRecursively,
 };

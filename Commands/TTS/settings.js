@@ -15,7 +15,7 @@ class TTSSettings extends Command {
       permLevel: 0,
       disable: false,
       guildOnly: true,
-      ownerOnly: false
+      ownerOnly: false,
     });
   }
 

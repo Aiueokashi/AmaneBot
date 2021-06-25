@@ -13,7 +13,7 @@ class Help extends Command {
       cooldown: 0,
       aliases: [],
       permLevel: 0,
-      guildOnly: true
+      guildOnly: true,
     });
   }
 
@@ -29,7 +29,7 @@ class Help extends Command {
       } else {
         let PERMS = [];
         if (COMMAND.userPermsNotBit.length > 0) {
-          COMMAND.userPermsNotBit.forEach(p =>
+          COMMAND.userPermsNotBit.forEach((p) =>
             PERMS.push(message.member.hasPermission(p) ? `✅${p}` : `❎${p}`)
           );
           let help_embed = new AmaneEmbed(data.userData)
@@ -40,11 +40,13 @@ class Help extends Command {
             .addField("引数", COMMAND.args ? "必須" : "不要")
             .addField(
               "使用例",
-              `\`\`\`${(COMMAND.example &&
-                COMMAND.example
-                  .map(x => `${data.guildData.prefix}${COMMAND.name} ${x}`)
-                  .join("\n")) ||
-                "使用例なし"}\`\`\``
+              `\`\`\`${
+                (COMMAND.example &&
+                  COMMAND.example
+                    .map((x) => `${data.guildData.prefix}${COMMAND.name} ${x}`)
+                    .join("\n")) ||
+                "使用例なし"
+              }\`\`\``
             )
             .addField(`ユーザーに必要な権限`, PERMS)
             .addField("状態", COMMAND.disable ? "メンテナンス中" : "利用可能");
@@ -77,7 +79,7 @@ class Help extends Command {
         let help_embed = new AmaneEmbed(data.userData).setTitle(
           `${client.user.tag} | HELP`
         );
-        value[1].forEach(v => {
+        value[1].forEach((v) => {
           v.ownerOnly
             ? null
             : help_embed.addField(

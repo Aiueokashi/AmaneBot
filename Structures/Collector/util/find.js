@@ -5,7 +5,7 @@ function findRecursively({
   key,
   value = null,
   type = "array" | "value" | "object",
-  result = []
+  result = [],
 }) {
   for (const k in obj) {
     if (obj[k] instanceof Object) {
@@ -14,7 +14,7 @@ function findRecursively({
         key,
         type,
         result,
-        value
+        value,
       });
     }
   }
@@ -28,5 +28,5 @@ function findRecursively({
 }
 
 module.exports = {
-  findRecursively
+  findRecursively,
 };

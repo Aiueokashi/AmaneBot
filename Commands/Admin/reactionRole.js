@@ -14,7 +14,7 @@ class ReactionRole extends Command {
       cooldown: 1000,
       userPerms: ["ADMINISTRATOR"],
       permLevel: 9,
-      ownerOnly: false
+      ownerOnly: false,
     });
   }
 
@@ -35,7 +35,7 @@ class ReactionRole extends Command {
       message: msg,
       roles: [role],
       emoji,
-      type: 1
+      type: 1,
     });
   }
 }

@@ -14,7 +14,7 @@ class Eval extends Command {
       category: "Owner",
       cooldown: 0,
       permLevel: 10,
-      ownerOnly: true
+      ownerOnly: true,
     });
   }
 
@@ -34,9 +34,7 @@ class Eval extends Command {
 
       message.channel.send(errorDetails, { code: "js" });
     } finally {
-      const log = ` USE OF EVAL by ${message.author.username} ( ${
-        message.author.id
-      } )`;
+      const log = ` USE OF EVAL by ${message.author.username} ( ${message.author.id} )`;
 
       console.log(chalk.bold.bgRed(`EVAL [${log}]`));
     }

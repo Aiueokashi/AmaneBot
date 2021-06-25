@@ -1,6 +1,6 @@
 exports.Mode = {
   1: "HOYA-VoiceTextAPI",
-  2: "Google TTS"
+  2: "Google TTS",
 };
 
 exports.VoiceListDesc = {
@@ -9,7 +9,7 @@ exports.VoiceListDesc = {
   takeru: "たける（男性）",
   santa: "サンタ",
   bear: "凶暴なクマ",
-  show: "ショウ（男性）"
+  show: "ショウ（男性）",
 };
 
 exports.VoiceList = {
@@ -18,5 +18,5 @@ exports.VoiceList = {
   3: "takeru",
   4: "santa",
   5: "bear",
-  6: "show"
+  6: "show",
 };

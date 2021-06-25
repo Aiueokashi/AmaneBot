@@ -12,7 +12,7 @@ class Register extends Command {
       category: "Owner",
       cooldown: 0,
       permLevel: 10,
-      ownerOnly: true
+      ownerOnly: true,
     });
   }
 

@@ -13,7 +13,7 @@ module.exports = class Parser {
     return {
       usedReg: usedReg,
       usedCommand: usedCommand,
-      cmdNoPrefix: usedCommand[1]
+      cmdNoPrefix: usedCommand[1],
     };
   }
 
@@ -31,7 +31,7 @@ module.exports = class Parser {
       JSON: splitByJSON,
       quotes: splitByQuotes,
       all: splitByAllArgTypes,
-      every: splitByEveryCharacter
+      every: splitByEveryCharacter,
     };
   }
   async parse(message, command, prefixRegex, commandPrefix, prefix) {
@@ -103,8 +103,8 @@ module.exports = class Parser {
         command: command,
         cmdUsed: commandUsed,
         prefix: prefix,
-        parsedValues: splits
-      }
+        parsedValues: splits,
+      },
     };
   }
 };

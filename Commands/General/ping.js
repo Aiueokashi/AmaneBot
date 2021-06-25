@@ -22,7 +22,7 @@ const components = [
   ["Japan"],
   ["US East"],
   ["South Africa"],
-  ["US South"]
+  ["US South"],
 ];
 const { MessageEmbed } = require("discord.js");
 const { AmaneEmbed, PaginatedEmbed } = require("../../Structures/Embed");
@@ -39,7 +39,7 @@ class Ping extends Command {
       cooldown: 10000,
       aliases: ["🏓"],
       permLevel: 0,
-      guildOnly: true
+      guildOnly: true,
     });
   }
 
@@ -55,18 +55,18 @@ class Ping extends Command {
             "```",
             `     遅延 | ${Date.now() - message.createdTimestamp}ms`,
             `WebSocket | ${client.ws.ping}ms `,
-            "```"
-          ].join("\n")
-        }
+            "```",
+          ].join("\n"),
+        },
       ],
-      footer: "✔:利用可能 | ✗:利用不可 | ?:データ未取得"
+      footer: "✔:利用可能 | ✗:利用不可 | ?:データ未取得",
     };
 
     try {
       const responce = await axios.get(url);
       const data = responce.data;
       components.forEach((c, i) => {
-        const res = data.components.find(x => x.name === c[0]);
+        const res = data.components.find((x) => x.name === c[0]);
         components[parseInt(i, 10)][1] = res
           ? res.status === "operational"
             ? "✔"
@@ -79,49 +79,49 @@ class Ping extends Command {
           value: [
             "```",
             `CloudFlare │ ${[components[0][1]]} : ${[
-              components[1][1]
+              components[1][1],
             ]} │ Voice`,
             `       API │ ${[components[2][1]]} : ${[
-              components[3][1]
+              components[3][1],
             ]} │ Tax Calc`,
             `   Gateway │ ${[components[4][1]]} : ${[
-              components[5][1]
+              components[5][1],
             ]} │ Push Notif`,
             `Med. Proxy │ ${[components[6][1]]} : ${[
-              components[7][1]
+              components[7][1],
             ]} │ Third-party`,
-            "```"
-          ].join("\n")
+            "```",
+          ].join("\n"),
         },
         {
           name: "サーバーステータス",
           value: [
             "```",
             `   EU West │ ${[components[8][1]]} : ${[
-              components[9][1]
+              components[9][1],
             ]} │ US West`,
             `EU Central │ ${[components[10][1]]} : ${[
-              components[11][1]
+              components[11][1],
             ]} │ Brazil`,
             ` Singapore │ ${[components[12][1]]} : ${[
-              components[13][1]
+              components[13][1],
             ]} │ Hong Kong`,
             `    Sydney │ ${[components[14][1]]} : ${[
-              components[15][1]
+              components[15][1],
             ]} │ Russia`,
             `US Central │ ${[components[16][1]]} : ${[
-              components[17][1]
+              components[17][1],
             ]} │ Japan`,
             `   US East │ ${[components[18][1]]} : ${[
-              components[19][1]
+              components[19][1],
             ]} │ South Afr`,
             `  US South │ ${[components[20][1]]} :   │ `,
-            "```"
-          ].join("\n")
+            "```",
+          ].join("\n"),
         },
         {
           name: "障害",
-          value: `\`\`\`${data.incidents ? "なし" : data.incidents}\`\`\``
+          value: `\`\`\`${data.incidents ? "なし" : data.incidents}\`\`\``,
         }
       );
     } catch (e) {

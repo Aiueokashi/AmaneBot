@@ -1,7 +1,7 @@
 const { MessageEmbed, TextChannel, DMChannel, Message } = require("discord.js");
 const ReactionHandler = require("./ReactionHandler.js");
 
-const validateProp = prop => (typeof prop !== "undefined" ? prop : true);
+const validateProp = (prop) => (typeof prop !== "undefined" ? prop : true);
 
 module.exports = class PaginatedEmbed {
   constructor(author, pages = [], embed = new MessageEmbed()) {
@@ -17,10 +17,10 @@ module.exports = class PaginatedEmbed {
       last: "⏭",
       jump: "🔢",
       info: "ℹ",
-      stop: "⏹"
+      stop: "⏹",
     };
 
-    pages.forEach(page => this.addPage(page));
+    pages.forEach((page) => this.addPage(page));
   }
 
   setEmojis(emojis) {

@@ -75,7 +75,7 @@ module.exports = class ReactionHandler extends ReactionCollector {
     this.awaiting = true;
     const message = await this.message.channel.send(this.prompt);
     const collected = await this.message.channel.awaitMessages(
-      mess => mess.author.id === author.id,
+      (mess) => mess.author.id === author.id,
       { max: 1, time: this.time }
     );
     this.awaiting = false;
@@ -89,7 +89,7 @@ module.exports = class ReactionHandler extends ReactionCollector {
     } else {
       message.channel
         .send("invalid page")
-        .then(msg => msg.delete({ timeout: 5000 }));
+        .then((msg) => msg.delete({ timeout: 5000 }));
     }
   }
 

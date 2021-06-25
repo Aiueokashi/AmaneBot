@@ -1,4 +1,4 @@
 module.exports = {
   PaginatedEmbed: require("./PaginatedEmbed"),
-  AmaneEmbed: require("./AmaneEmbed")
+  AmaneEmbed: require("./AmaneEmbed"),
 };

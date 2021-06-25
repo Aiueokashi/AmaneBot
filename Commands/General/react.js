@@ -13,7 +13,7 @@ class React extends Command {
       cooldown: 10000,
       aliases: [],
       permLevel: 0,
-      guildOnly: true
+      guildOnly: true,
     });
   }
 
@@ -23,7 +23,7 @@ class React extends Command {
       return super.respond("同じ文字のリアクションはつけることができません");
     }
     const msg = await message.channel.messages.fetch(args[1]);
-    args[0].split("").forEach(str => {
+    args[0].split("").forEach((str) => {
       const emoji = client.util.strToEmoji(str);
       msg.react(emoji.unicode);
     });

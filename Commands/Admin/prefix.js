@@ -14,7 +14,7 @@ class Prefix extends Command {
       cooldown: 100000,
       userPerms: ["ADMINISTRATOR"],
       permLevel: 9,
-      ownerOnly: false
+      ownerOnly: false,
     });
   }
 

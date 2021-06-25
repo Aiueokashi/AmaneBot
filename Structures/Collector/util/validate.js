@@ -107,7 +107,7 @@ module.exports.validateOptions = (options, type) => {
       if (
         options.reactions &&
         Object.keys(options.reactions).filter(
-          emoji => !client.emojis.resolveIdentifier(emoji)
+          (emoji) => !client.emojis.resolveIdentifier(emoji)
         ).length > 0
       )
         return Promise.reject(
@@ -172,10 +172,10 @@ module.exports.validateOptions = (options, type) => {
         obj: options.pages,
         key: "reactions",
         result: Object.keys(options.pages),
-        type: "array"
+        type: "array",
       });
       const notEmojis = reactions.filter(
-        emoji => !client.emojis.resolveIdentifier(emoji)
+        (emoji) => !client.emojis.resolveIdentifier(emoji)
       );
       if (notEmojis.length > 0) {
         return Promise.reject(
@@ -190,12 +190,12 @@ module.exports.validateOptions = (options, type) => {
       const onReacts = findRecursively({
         obj: options.pages,
         key: "onReact",
-        type: "array"
+        type: "array",
       });
 
       if (
         onReacts.length > 0 &&
-        onReacts.filter(fx => typeof fx !== "function").length > 0
+        onReacts.filter((fx) => typeof fx !== "function").length > 0
       )
         return Promise.reject(
           new Error("Invalid input: Some onReact is not a function type.")
@@ -204,11 +204,11 @@ module.exports.validateOptions = (options, type) => {
       const onMessages = findRecursively({
         obj: options.pages,
         key: "onMessage",
-        type: "array"
+        type: "array",
       });
       if (
         onMessages.length > 0 &&
-        onMessages.filter(fx => typeof fx !== "function").length > 0
+        onMessages.filter((fx) => typeof fx !== "function").length > 0
       )
         return Promise.reject(
           new Error("Invalid input: Some onMessage is not a function type.")
@@ -233,7 +233,7 @@ module.exports.validateOptions = (options, type) => {
         type === "reactMenu" ||
         type === "messageQuestion"
           ? Constants.DEFAULT_PAGINATOR_MAX_REACT
-          : Constants.DEFAULT_COLLECTOR_MAX_REACT
+          : Constants.DEFAULT_COLLECTOR_MAX_REACT,
     },
     options.collectorOptions
   );

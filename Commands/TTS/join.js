@@ -15,14 +15,14 @@ class Join extends Command {
       permLevel: 0,
       disable: false,
       guildOnly: true,
-      ownerOnly: false
+      ownerOnly: false,
     });
   }
 
   async run(message, args, data) {
     message.guild.ttsPlayer
       ._join(message.member.voice.channel, message.channel)
-      .then(c => {
+      .then((c) => {
         let embed = new AmaneEmbed(data.userData)
           .setTitle("ボイスチャンネルに接続しました。🔊")
           .addField("読み上げるチャンネル📖", `<#${message.channel.id}>`, true)

@@ -16,59 +16,59 @@ module.exports = mongoose.model(
       type: Object,
       default: {
         leveling: {
-          enabled: true
+          enabled: true,
         },
 
         welcome: {
           enabled: false,
           message: null,
           channel: null,
-          withImg: false
+          withImg: false,
         },
 
         goodbye: {
           enabled: false,
           message: null,
           channel: null,
-          withImg: false
+          withImg: false,
         },
 
         autorole: {
           enabled: false,
-          role: []
+          role: [],
         },
 
         automod: {
           enabled: false,
-          options: {}
+          options: {},
         },
 
         fortniteshop: {
           enabled: false,
-          channel: null
+          channel: null,
         },
 
         logs: {
           enabled: false,
-          channel: null
+          channel: null,
         },
 
         modlog: {
           enabled: false,
-          channel: null
+          channel: null,
         },
 
         tickets: {
           enabled: false,
-          category: null
-        }
-      }
+          category: null,
+        },
+      },
     },
 
     ignoredChannels: { type: Array, default: [] },
     customCommands: { type: Array, default: [] },
     commands: { type: Array, default: [] },
     autoDeleteModCommands: { type: Boolean, default: false },
-    disabledCategories: { type: Array, default: [] }
+    disabledCategories: { type: Array, default: [] },
   })
 );

@@ -2,10 +2,11 @@ const {
     Collection,
     MessageAttachment,
     MessageEmbed,
-    Permissions
+    Permissions,
   } = require("discord.js"),
   SlashCommand = require("../SlashCommand"),
   AmaneError = require("../Extender/Error"),
+  { AmaneEmbed, PaginatedEmbed } = require("../Embed"),
   { Hex_Colors, Colors, Emojis } = require("./Constants");
 
 class Util {
@@ -30,10 +31,10 @@ class Util {
     return 1;
   }
 
-  resolveColor = color => {
+  resolveColor = (color) => {
     if (!color.startsWith("#")) {
       const Hex_Code = Hex_Colors.find(
-        c => c.name.toLowerCase() === color.toLowerCase()
+        (c) => c.name.toLowerCase() === color.toLowerCase()
       );
       if (Hex_Code === undefined) {
         return Hex_Colors[0].hex;
@@ -76,7 +77,7 @@ class Util {
   hasSameStr(string) {
     let flag = false;
     const check = [];
-    string.split("").forEach(s => {
+    string.split("").forEach((s) => {
       if (check.includes(s)) {
         flag = true;
       }
@@ -86,19 +87,19 @@ class Util {
   }
 
   strToEmoji(char) {
-    const res = Emojis.find(s => s.char === char.toLowerCase());
+    const res = Emojis.find((s) => s.char === char.toLowerCase());
     return res ? res.emoji : x;
   }
 
   resolveUser(text, users, caseSensitive = false, wholeWord = false) {
     return (
       users.get(text) ||
-      users.find(user => this.checkUser(text, user, caseSensitive, wholeWord))
+      users.find((user) => this.checkUser(text, user, caseSensitive, wholeWord))
     );
   }
 
   resolveUsers(text, users, caseSensitive = false, wholeWord = false) {
-    return users.filter(user =>
+    return users.filter((user) =>
       this.checkUser(text, user, caseSensitive, wholeWord)
     );
   }
@@ -134,14 +135,14 @@ class Util {
   resolveMember(text, members, caseSensitive = false, wholeWord = false) {
     return (
       members.get(text) ||
-      members.find(member =>
+      members.find((member) =>
         this.checkMember(text, member, caseSensitive, wholeWord)
       )
     );
   }
 
   resolveMembers(text, members, caseSensitive = false, wholeWord = false) {
-    return members.filter(member =>
+    return members.filter((member) =>
       this.checkMember(text, member, caseSensitive, wholeWord)
     );
   }
@@ -185,14 +186,14 @@ class Util {
   resolveChannel(text, channels, caseSensitive = false, wholeWord = false) {
     return (
       channels.get(text) ||
-      channels.find(channel =>
+      channels.find((channel) =>
         this.checkChannel(text, channel, caseSensitive, wholeWord)
       )
     );
   }
 
   resolveChannels(text, channels, caseSensitive = false, wholeWord = false) {
-    return channels.filter(channel =>
+    return channels.filter((channel) =>
       this.checkChannel(text, channel, caseSensitive, wholeWord)
     );
   }
@@ -218,12 +219,12 @@ class Util {
   resolveRole(text, roles, caseSensitive = false, wholeWord = false) {
     return (
       roles.get(text) ||
-      roles.find(role => this.checkRole(text, role, caseSensitive, wholeWord))
+      roles.find((role) => this.checkRole(text, role, caseSensitive, wholeWord))
     );
   }
 
   resolveRoles(text, roles, caseSensitive = false, wholeWord = false) {
-    return roles.filter(role =>
+    return roles.filter((role) =>
       this.checkRole(text, role, caseSensitive, wholeWord)
     );
   }
@@ -249,14 +250,14 @@ class Util {
   resolveEmoji(text, emojis, caseSensitive = false, wholeWord = false) {
     return (
       emojis.get(text) ||
-      emojis.find(emoji =>
+      emojis.find((emoji) =>
         this.checkEmoji(text, emoji, caseSensitive, wholeWord)
       )
     );
   }
 
   resolveEmojis(text, emojis, caseSensitive = false, wholeWord = false) {
-    return emojis.filter(emoji =>
+    return emojis.filter((emoji) =>
       this.checkEmoji(text, emoji, caseSensitive, wholeWord)
     );
   }
@@ -282,14 +283,14 @@ class Util {
   resolveGuild(text, guilds, caseSensitive = false, wholeWord = false) {
     return (
       guilds.get(text) ||
-      guilds.find(guild =>
+      guilds.find((guild) =>
         this.checkGuild(text, guild, caseSensitive, wholeWord)
       )
     );
   }
 
   resolveGuilds(text, guilds, caseSensitive = false, wholeWord = false) {
-    return guilds.filter(guild =>
+    return guilds.filter((guild) =>
       this.checkGuild(text, guild, caseSensitive, wholeWord)
     );
   }
@@ -394,7 +395,7 @@ class Util {
   }
 
   embed(data) {
-    return new MessageEmbed(data);
+    return new AmaneEmbed(data);
   }
 
   attachment(file, name) {
@@ -416,50 +417,48 @@ class Util {
 
     try {
       paging &&
-        pages.map(
-          (x, pi) =>
-            x.footer
-              ? (x.footer = {
-                  text: `${x.footer} | ${++pi} / ${Object.keys(pages).length}`
-                })
-              : (x.footer = { text: `${++pi} / ${Object.keys(pages).length}` })
+        pages.map((x, pi) =>
+          x.footer
+            ? (x.footer = {
+                text: `${x.footer} | ${++pi} / ${Object.keys(pages).length}`,
+              })
+            : (x.footer = { text: `${++pi} / ${Object.keys(pages).length}` })
         );
     } catch (e) {
       isJSON = false;
       paging &&
-        pages.toJSON().map(
-          (x, pi) =>
-            x.footer
-              ? (x.footer = {
-                  text: `${x.footer} | ${++pi} / ${Object.keys(pages).length}`
-                })
-              : (x.footer = { text: `${++pi} / ${Object.keys(pages).length}` })
+        pages.toJSON().map((x, pi) =>
+          x.footer
+            ? (x.footer = {
+                text: `${x.footer} | ${++pi} / ${Object.keys(pages).length}`,
+              })
+            : (x.footer = { text: `${++pi} / ${Object.keys(pages).length}` })
         );
     }
     message.channel
       .send(isJSON ? { embed: pages[i] } : { embed: pages[i].toJSON() })
-      .then(async msg => {
+      .then(async (msg) => {
         await msg.react("⬅️");
 
-        const backFilter = reaction => reaction.emoji.name === "⬅️";
+        const backFilter = (reaction) => reaction.emoji.name === "⬅️";
         const backCollector = msg.createReactionCollector(backFilter, {
-          time: 900000
+          time: 900000,
         });
 
         await msg.react("➡️");
 
-        const nextFilter = reaction => reaction.emoji.name === "➡️";
+        const nextFilter = (reaction) => reaction.emoji.name === "➡️";
         const nextCollector = msg.createReactionCollector(nextFilter, {
-          time: 900000
+          time: 900000,
         });
 
-        backCollector.on("collect", r => {
+        backCollector.on("collect", (r) => {
           i > 0 &&
             msg.edit(
               isJSON ? { embed: pages[--i] } : { embed: pages[--i].toJSON() }
             );
           r.users.remove(
-            r.users.cache.filter(u => u === message.author).first()
+            r.users.cache.filter((u) => u === message.author).first()
           );
         });
 
@@ -467,25 +466,25 @@ class Util {
           msg.reactions.removeAll().catch(() => {})
         );
 
-        nextCollector.on("collect", r => {
+        nextCollector.on("collect", (r) => {
           i < Object.keys(pages).length - 1 &&
             msg.edit(
               isJSON ? { embed: pages[++i] } : { embed: pages[++i].toJSON() }
             );
           r.users.remove(
-            r.users.cache.filter(u => u === message.author).first()
+            r.users.cache.filter((u) => u === message.author).first()
           );
         });
 
         if (trash) {
           await msg.react("🗑");
 
-          const trashFilter = reaction => reaction.emoji.name === "🗑",
+          const trashFilter = (reaction) => reaction.emoji.name === "🗑",
             trashCollector = msg.createReactionCollector(trashFilter, {
-              time: 900000
+              time: 900000,
             });
 
-          trashCollector.on("collect", r => {
+          trashCollector.on("collect", (r) => {
             msg.delete({ timeout: 500 });
             message.delete({ timeout: 500 });
           });

@@ -6,7 +6,7 @@ const { Structures } = require("discord.js"),
 //Guildクラス拡張
 Structures.extend(
   "Guild",
-  Guild =>
+  (Guild) =>
     class extends Guild {
       constructor(client, data) {
         super(client, data);

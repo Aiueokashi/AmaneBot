@@ -4,7 +4,7 @@ class Test extends SlashCommand {
   constructor(client) {
     super(client, {
       name: "test",
-      description: "テスト用"
+      description: "テスト用",
     });
   }
 
@@ -25,13 +25,13 @@ class Test extends SlashCommand {
                   type: 2,
                   label: `GlanzMember`,
                   style: 5,
-                  url: "https://replit.com/@GlanzMember"
-                }
-              ]
-            }
-          ]
-        }
-      }
+                  url: "https://replit.com/@GlanzMember",
+                },
+              ],
+            },
+          ],
+        },
+      },
     });
   }
 }

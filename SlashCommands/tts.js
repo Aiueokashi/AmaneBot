@@ -14,24 +14,24 @@ class TTS extends SlashCommand {
           choices: [
             {
               name: "type",
-              value: "type"
+              value: "type",
             },
             {
               name: "mode",
-              value: "mode"
+              value: "mode",
             },
             {
               name: "speed",
-              value: "speed"
+              value: "speed",
             },
             {
               name: "pitch",
-              value: "pitch"
-            }
-          ]
+              value: "pitch",
+            },
+          ],
         },
-        {}
-      ]
+        {},
+      ],
     });
   }
 
@@ -40,7 +40,7 @@ class TTS extends SlashCommand {
     const id = interaction.member.user.id;
 
     super.respond({
-      data: {}
+      data: {},
     });
   }
 }

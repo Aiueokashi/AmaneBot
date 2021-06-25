@@ -11,9 +11,9 @@ class Google extends SlashCommand {
           name: "検索ワード",
           description: "検索ワードを入力",
           type: 3,
-          required: true
-        }
-      ]
+          required: true,
+        },
+      ],
     });
   }
 
@@ -26,9 +26,9 @@ class Google extends SlashCommand {
         qs: {
           q: interaction.data.options[0].value,
           filter: 0,
-          pws: 0
+          pws: 0,
         },
-        num: 3
+        num: 3,
       };
       const links = await serp.search(options);
       super.respond({
@@ -37,8 +37,8 @@ class Google extends SlashCommand {
           data: {
             embeds: [
               {
-                title: "検索結果"
-              }
+                title: "検索結果",
+              },
             ],
             components: [
               {
@@ -48,25 +48,25 @@ class Google extends SlashCommand {
                     type: 2,
                     label: `${links[0].title}`,
                     style: 5,
-                    url: `https://www.google.co.jp${links[0].url}`
+                    url: `https://www.google.co.jp${links[0].url}`,
                   },
                   {
                     type: 2,
                     label: `${links[1].title}`,
                     style: 5,
-                    url: `https://www.google.co.jp${links[1].url}`
+                    url: `https://www.google.co.jp${links[1].url}`,
                   },
                   {
                     type: 2,
                     label: `${links[2].title}`,
                     style: 5,
-                    url: `https://www.google.co.jp${links[2].url}`
-                  }
-                ]
-              }
-            ]
-          }
-        }
+                    url: `https://www.google.co.jp${links[2].url}`,
+                  },
+                ],
+              },
+            ],
+          },
+        },
       });
     } catch (error) {
       super.respond({
@@ -75,9 +75,9 @@ class Google extends SlashCommand {
           data: {
             flags: 64,
             content:
-              "検索結果が見つからなかったようです…\n検索語句を変えてもう一度試してください。"
-          }
-        }
+              "検索結果が見つからなかったようです…\n検索語句を変えてもう一度試してください。",
+          },
+        },
       });
     }
   }

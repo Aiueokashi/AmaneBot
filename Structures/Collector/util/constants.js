@@ -46,7 +46,7 @@ class Constants {
     "⏭️": async (_reaction, _collector, botMessage, pages) => {
       pages.index = pages.length - 1;
       await botMessage.edit({ embed: pages[pages.index] });
-    }
+    },
   };
   /**
    * @constant {Funcion}
@@ -64,7 +64,7 @@ class Constants {
     },
     "❌": () => {
       return true;
-    }
+    },
   };
   /**
    * @constant {number}

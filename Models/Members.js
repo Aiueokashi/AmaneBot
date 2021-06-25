@@ -18,8 +18,8 @@ module.exports = mongoose.model(
         channel: null,
         joining: false,
         joinedtimestamp: 0,
-        total: 0
-      }
+        total: 0,
+      },
     },
 
     punishments: { type: Array, default: [] },
@@ -29,8 +29,8 @@ module.exports = mongoose.model(
       default: {
         muted: false,
         case: null,
-        endDate: null
-      }
-    }
+        endDate: null,
+      },
+    },
   })
 );

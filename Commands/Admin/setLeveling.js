@@ -13,7 +13,7 @@ class Leveling extends Command {
       cooldown: 10000,
       userPerms: ["ADMINISTRATOR"],
       permLevel: 9,
-      ownerOnly: false
+      ownerOnly: false,
     });
   }
 

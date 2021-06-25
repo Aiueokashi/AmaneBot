@@ -2,7 +2,7 @@ const {
   GuildMember,
   PermissionResolvable,
   RoleResolvable,
-  UserResolvable
+  UserResolvable,
 } = require("discord.js");
 const { ReactionRoleType, isValidReactionRoleType } = require("./constants");
 
@@ -19,7 +19,7 @@ class ReactionRole {
     requirements,
     disabled,
     type,
-    roles
+    roles,
   }) {
     this.guild = message.guild ? message.guild.id : guild;
 
@@ -42,14 +42,14 @@ class ReactionRole {
       verifiedDeveloper: false,
       roles: {
         allowList: [],
-        denyList: []
+        denyList: [],
       },
       users: {
         allowList: [],
-        denyList: []
+        denyList: [],
       },
       permissionsNeed: [],
-      ...requirements
+      ...requirements,
     };
 
     this.disabled = Boolean(disabled);
@@ -102,12 +102,12 @@ class ReactionRole {
       requirements: this.requirements,
       disabled: this.disabled,
       type: this.type,
-      roles: this.roles
+      roles: this.roles,
     };
   }
 
   async checkDeveloperRequirement(member) {
-    return new Promise(async resolve => {
+    return new Promise(async (resolve) => {
       if (!this.requirements.verifiedDeveloper) return resolve(true);
       const flags = await member.user.fetchFlags();
       const isVerifiedDeveloper = flags.has("VERIFIED_DEVELOPER");
@@ -135,7 +135,7 @@ class ReactionRole {
       requirements: json.requirements,
       disabled: json.disabled,
       type: json.type,
-      roles: json.roles
+      roles: json.roles,
     });
   }
 
@@ -180,5 +180,5 @@ class ReactionRole {
 }
 
 module.exports = {
-  ReactionRole
+  ReactionRole,
 };

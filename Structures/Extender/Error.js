@@ -5,13 +5,14 @@ const ErrMsg = {
     `'${chalk.err(id)}'コマンドの'${chalk.err(alias)}'は'${chalk.err(
       conflict
     )}'で既に使用されています。`,
-  INVALID_COMMAND_TYPE: filename =>
+  INVALID_COMMAND_TYPE: (filename) =>
     `${chalk.err(filename)}を正常に読み込めません。`,
   COMMAND_CONFLICT: (command, conflict) =>
     `'${chalk.err(command)}' コマンド名が被っています。`,
-  NOT_PROVIDE_RUN_METHOD: name => `${name}コマンドにrunメソッドがありません。`,
-  COLOR_CONVERT: color => `カラーコードに変換できません :${color}`,
-  COLOR_RANGE: color => `カラーコードの範囲外です :${color}`
+  NOT_PROVIDE_RUN_METHOD: (name) =>
+    `${name}コマンドにrunメソッドがありません。`,
+  COLOR_CONVERT: (color) => `カラーコードに変換できません :${color}`,
+  COLOR_RANGE: (color) => `カラーコードの範囲外です :${color}`,
 };
 //Errorを拡張
 class AmaneError extends Error {

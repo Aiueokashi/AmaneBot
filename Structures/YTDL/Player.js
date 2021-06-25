@@ -14,7 +14,7 @@ class YTDLCore {
   async play(song, message, data) {
     const queue = this.queue;
     if (!song) {
-      setTimeout(function() {
+      setTimeout(function () {
         if (queue.connection.dispatcher && message.guild.me.voice.channel) {
           return;
         }
@@ -55,7 +55,7 @@ class YTDLCore {
           }
         }
       })
-      .on("error", err => {
+      .on("error", (err) => {
         console.log(err);
         queue.songs.shift();
         this.play(queue.songs[0], message);
@@ -83,7 +83,7 @@ class YTDLCore {
 
     const filter = (reaction, user) => user.id !== message.client.user.id;
     var collector = playingMessage.createReactionCollector(filter, {
-      time: song.duration > 0 ? song.duration * 1000 : 600000
+      time: song.duration > 0 ? song.duration * 1000 : 600000,
     });
 
     collector.on("collect", (reaction, user) => {

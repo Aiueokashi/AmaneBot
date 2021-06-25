@@ -4,10 +4,10 @@ const fs = require("fs");
 const Canvas = require("canvas");
 const { Hex_Colors } = require("../../Structures/Utils/Constants");
 
-const resolveColor = color => {
+const resolveColor = (color) => {
   if (!color.startsWith("#")) {
     const Hex_Code = Hex_Colors.find(
-      c => c.name.toLowerCase() === color.toLowerCase()
+      (c) => c.name.toLowerCase() === color.toLowerCase()
     );
     if (Hex_Code === undefined) {
       return Hex_Colors[0].hex;
@@ -35,7 +35,7 @@ class Rank extends Command {
       cooldown: 10000,
       aliases: [],
       permLevel: 0,
-      guildOnly: true
+      guildOnly: true,
     });
   }
 

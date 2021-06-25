@@ -2,7 +2,7 @@ const {
   Message,
   MessageEmbed,
   EmojiResolvable,
-  UserResolvable
+  UserResolvable,
 } = require("discord.js");
 const Discord = require("discord.js");
 const { validateOptions } = require("../util/validate");
@@ -34,7 +34,7 @@ class Controller {
       key: "id",
       value: pageId,
       type: "object",
-      result: pages
+      result: pages,
     });
     const page = pages.shift();
     if (!page)
@@ -70,7 +70,7 @@ class Controller {
       await this.botMessage.reactions.removeAll();
     } else if (this.currentPage.reactions) {
       await Promise.all(
-        this.currentPage.reactions.map(r => this.botMessage.react(r))
+        this.currentPage.reactions.map((r) => this.botMessage.react(r))
       );
     }
 
@@ -132,13 +132,13 @@ class ReactionCollector {
       obj: pages,
       key: "reactions",
       result: keys,
-      type: "array"
+      type: "array",
     });
     findRecursively({
       obj: pages,
       key: "backEmoji",
       result: allReactions,
-      type: "value"
+      type: "value",
     });
     const needCollectMessages =
       findRecursively({ obj: pages, key: "onMessage" }).length > 0;
@@ -153,7 +153,7 @@ class ReactionCollector {
       collectorOptions
     );
     const controller = new Controller(botMessage, collector, pages);
-    collector.on("collect", async reaction => {
+    collector.on("collect", async (reaction) => {
       const emoji = reaction.emoji.id || reaction.emoji.name;
       if (
         controller.currentPage &&
@@ -176,16 +176,16 @@ class ReactionCollector {
       await controller.update();
       await reaction.users.remove(user.id);
     });
-    await Promise.all(Object.keys(pages).map(r => botMessage.react(r)));
+    await Promise.all(Object.keys(pages).map((r) => botMessage.react(r)));
     collector.on("end", async () => botMessage.reactions.removeAll());
 
     if (needCollectMessages) {
       const messagesCollector = botMessage.channel.createMessageCollector(
-        message => message.author.id === user.id,
+        (message) => message.author.id === user.id,
         collectorOptions
       );
       controller.messagesCollector = messagesCollector;
-      messagesCollector.on("collect", async message => {
+      messagesCollector.on("collect", async (message) => {
         if (message.deletable) await message.delete();
         if (
           controller.currentPage &&
@@ -208,7 +208,7 @@ class ReactionCollector {
       collectorOptions,
       reactionsMap,
       deleteReaction,
-      deleteAllOnEnd
+      deleteAllOnEnd,
     } = validateOptions(options, "reactPaginator");
     if (!pages || pages.length === 0)
       return Promise.reject(new Error("Invalid input: pages is null or empty"));
@@ -222,7 +222,7 @@ class ReactionCollector {
         reactionsMap,
         collectorOptions,
         deleteReaction,
-        deleteAllOnEnd
+        deleteAllOnEnd,
       },
       botMessage,
       pages
@@ -250,10 +250,10 @@ class ReactionCollector {
       user,
       collectorOptions,
       deleteReaction,
-      deleteAllOnEnd
+      deleteAllOnEnd,
     } = _options;
     const reactions = Object.keys(reactionsMap) || reactionsMap;
-    await Promise.all(reactions.map(r => botMessage.react(r)));
+    await Promise.all(reactions.map((r) => botMessage.react(r)));
     const filter = (r, u) =>
       u.id === user.id &&
       (reactions.includes(r.emoji.id) || reactions.includes(r.emoji.name)) &&
@@ -262,7 +262,7 @@ class ReactionCollector {
       filter,
       collectorOptions
     );
-    collector.on("collect", async reaction => {
+    collector.on("collect", async (reaction) => {
       const emoji = reaction.emoji.id || reaction.emoji.name;
       if (deleteReaction) await reaction.users.remove(user.id);
       if (typeof reactionsMap[emoji] === "function")
@@ -275,17 +275,17 @@ class ReactionCollector {
   }
 
   static async __createYesNoReactionCollector(_options) {
-    return new Promise(async resolve => {
+    return new Promise(async (resolve) => {
       const {
         botMessage,
         reactionsMap,
         user,
         collectorOptions,
         deleteReaction,
-        deleteAllOnEnd
+        deleteAllOnEnd,
       } = _options;
       const reactions = Object.keys(reactionsMap) || reactionsMap;
-      await Promise.all(reactions.map(r => botMessage.react(r)));
+      await Promise.all(reactions.map((r) => botMessage.react(r)));
       const filter = (r, u) =>
         u.id === user.id &&
         (reactions.includes(r.emoji.id) || reactions.includes(r.emoji.name)) &&
@@ -314,5 +314,5 @@ class ReactionCollector {
 
 module.exports = {
   Controller,
-  ReactionCollector
+  ReactionCollector,
 };

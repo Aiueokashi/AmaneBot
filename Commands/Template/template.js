@@ -21,7 +21,7 @@ class Template extends Command {
       botPerms: [], //botに必要な権限を入れる(デフォルトでSEND_MESSAGESが入っているのでそれ以外にいらない場合は書かなくていい)
       ownerOnly: false, //tureにするとbotオーナーしか使えなくなり、helpコマンドから消える(オーナーID配列は./config.jsのMaster。自分で追加してね！)
       guildOnly: true, //trueにするとDMだと反応しない
-      nsfw: false //trueにするとnsfwのみでしか使えなくなる。
+      nsfw: false, //trueにするとnsfwのみでしか使えなくなる。
     });
   }
 

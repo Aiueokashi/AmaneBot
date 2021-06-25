@@ -64,7 +64,7 @@ class AntiSpamClient extends EventEmitter {
         options.removeMessages != undefined ? options.removeMessages : true,
 
       removeBotMessages: options.removeBotMessages || false,
-      removeBotMessagesAfter: options.removeBotMessagesAfter || 10000
+      removeBotMessagesAfter: options.removeBotMessagesAfter || 10000,
     };
 
     this.cache = {
@@ -72,7 +72,7 @@ class AntiSpamClient extends EventEmitter {
       warnedUsers: [],
       kickedUsers: [],
       mutedUsers: [],
-      bannedUsers: []
+      bannedUsers: [],
     };
   }
 
@@ -100,7 +100,7 @@ class AntiSpamClient extends EventEmitter {
       const modLogChannel =
         client.channels.cache.get(this.options.modLogsChannelName) ||
         msg.guild.channels.cache.find(
-          channel =>
+          (channel) =>
             channel.name === this.options.modLogsChannelName &&
             channel.type === "text"
         );
@@ -111,7 +111,7 @@ class AntiSpamClient extends EventEmitter {
   }
   async clearSpamMessages(messages, client) {
     try {
-      messages.forEach(message => {
+      messages.forEach((message) => {
         const channel = client.channels.cache.get(message.channelID);
         if (channel) {
           const msg = channel.messages.cache.get(message.messageID);
@@ -130,7 +130,7 @@ class AntiSpamClient extends EventEmitter {
   async clearBotMessages(message) {
     if (this.options.removeBotMessages == false) return;
     try {
-      setTimeout(function() {
+      setTimeout(function () {
         message.delete();
       }, this.options.removeBotMessagesAfter);
     } catch (e) {

@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const AmaneError = require("../Structures/Extender/Error");
 const { Hex_Colors } = require("../Structures/Utils/Constants");
 
-const resolveColor = color => {
+const resolveColor = (color) => {
   if (!color.startsWith("#")) {
     const Hex_Code = Hex_Colors.find(
-      c => c.name.toLowerCase() === color.toLowerCase()
+      (c) => c.name.toLowerCase() === color.toLowerCase()
     );
     if (Hex_Code === undefined) {
       return Hex_Colors[0];
@@ -54,23 +54,23 @@ const userSchema = new mongoose.Schema({
     default: {
       welcome: {
         color: { hex: "#FFFFFF" },
-        image: null
+        image: null,
       },
 
       goodbye: {
         color: { hex: "#FFFFFF" },
-        image: null
+        image: null,
       },
 
       rank: {
         color: { hex: "#FFFFFF" },
-        image: null
-      }
-    }
-  }
+        image: null,
+      },
+    },
+  },
 });
 
-userSchema.method("genApiToken", async function() {
+userSchema.method("genApiToken", async function () {
   this.apiToken = genToken();
   await this.save();
   return this.apiToken;

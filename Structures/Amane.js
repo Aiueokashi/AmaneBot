@@ -13,7 +13,7 @@ const { Client, Collection, Intents } = require("discord.js"),
   {
     ReactionRoleManager,
     MessageCollector,
-    ReactionCollector
+    ReactionCollector,
   } = require("./Collector/index.js"),
   Parser = require("./Parser"),
   Util = require("./Utils/Util");
@@ -30,14 +30,13 @@ class Amane extends Client {
   constructor(options = {}) {
     super(options);
     this.slcUtil = {
-      url:
-        "https://discord.com/api/v8/applications/854281955168354335/commands",
+      url: "https://discord.com/api/v8/applications/854281955168354335/commands",
       header: {
         headers: {
           Authorization: "Bot " + process.env.TOKEN,
-          "Content-Type": "application/json"
-        }
-      }
+          "Content-Type": "application/json",
+        },
+      },
     };
     this.partial = ["GUILD_MEMBER", "USER"];
     this.intents = Intents.ALL;
@@ -60,7 +59,7 @@ class Amane extends Client {
 
     this.reactionRoleManager = new ReactionRoleManager(this, {
       storage: true,
-      mongoDbLink: process.env.MONGO_URL
+      mongoDbLink: process.env.MONGO_URL,
     });
     this.reactionCollector = ReactionCollector;
     this.messageCollector = MessageCollector;
@@ -77,7 +76,7 @@ class Amane extends Client {
     this.discordDB = [
       "851083957809971264",
       "851086175351734282",
-      "851086296889294878"
+      "851086296889294878",
     ];
 
     console.log(chalk.bold.bgRed("CLIENT [INITIALISED]"));
@@ -109,7 +108,7 @@ class Amane extends Client {
         this.commands.set(command.name, command);
 
         command.aliases.length &&
-          command.aliases.map(alias => {
+          command.aliases.map((alias) => {
             const a_conflict = this.aliases.get(alias.toLowerCase());
             if (a_conflict)
               throw new AmaneError(
@@ -138,7 +137,7 @@ class Amane extends Client {
         if (!(command instanceof SLASHCOMMAND)) {
           throw new Error();
         }
-        const _isRegistered = SCData.data.find(d => d.name === command.name);
+        const _isRegistered = SCData.data.find((d) => d.name === command.name);
         if (_isRegistered !== undefined) {
           command.id = _isRegistered.id;
           this.slashCommands.set(command.name, command);
@@ -150,7 +149,7 @@ class Amane extends Client {
         }
         //イベントリスナー
         if (command.enable)
-          client.ws.on("INTERACTION_CREATE", async interaction => {
+          client.ws.on("INTERACTION_CREATE", async (interaction) => {
             const cmd = interaction.data.name.toLowerCase();
             const args = interaction.data.options;
             if (cmd === command.name) {

@@ -1,4 +1,4 @@
-const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 class Message {
   constructor(client) {
@@ -22,13 +22,10 @@ class Message {
       );
       message.guild.data = data.guildData = guild;
       message.guild.prefix = guild.prefix;
-      const memberData = await client.findOrCreateMember(
-        {
-          id: message.author.id,
-          guildID: message.guild.id
-        },
-        true
-      );
+      const memberData = await client.findOrCreateMember({
+        id: message.author.id,
+        guildID: message.guild.id,
+      });
       data.memberData = memberData;
     }
 
@@ -90,7 +87,7 @@ class Message {
               )
               .replace(/<<cmd>>/gm, command.name)
           )
-          .then(msg => msg.delete({ timeout: 10000 }))
+          .then((msg) => msg.delete({ timeout: 10000 }))
       );
     if (command.ownerOnly && !client.owners.includes(message.author.id)) return;
 
@@ -104,27 +101,33 @@ class Message {
           ? `${message.author} 引数がありません!`
           : {
               embed: {
-                title: `${command.name.replace(/\b\w/g, l => l.toUpperCase())}`,
+                title: `${command.name.replace(/\b\w/g, (l) =>
+                  l.toUpperCase()
+                )}`,
                 description: `> ${command.description}`,
                 fields: [
                   {
                     name: "構文",
-                    value: `\`\`\`${command.usage}\`\`\``
+                    value: `\`\`\`${command.usage}\`\`\``,
                   },
                   {
                     name: "使用例",
-                    value: `\`\`\`${(command.example &&
-                      command.example
-                        .map(
-                          x =>
-                            `${message.guild.prefix ||
-                              this.client.config.prefix}${command.name} ${x}`
-                        )
-                        .join("\n")) ||
-                      "使用例なし"}\`\`\``
-                  }
-                ]
-              }
+                    value: `\`\`\`${
+                      (command.example &&
+                        command.example
+                          .map(
+                            (x) =>
+                              `${
+                                message.guild.prefix ||
+                                this.client.config.prefix
+                              }${command.name} ${x}`
+                          )
+                          .join("\n")) ||
+                      "使用例なし"
+                    }\`\`\``,
+                  },
+                ],
+              },
             }
       );
 
@@ -146,7 +149,7 @@ class Message {
 
     command.setMessage(message);
 
-    command.run(message, args, data).then(re => {
+    command.run(message, args, data).then((re) => {
       if (command.cooldown > 0 && re !== "failed") {
         command.startCooldown(message.author.id);
       }

@@ -17,7 +17,7 @@ class Weather extends Command {
       cooldown: 0,
       aliases: [],
       permLevel: 0,
-      guildOnly: true
+      guildOnly: true,
     });
   }
   //ディレクトリ取得
@@ -31,7 +31,7 @@ class Weather extends Command {
     );
     if (args[0]) {
       let Wea_embed_array = new Array();
-      const prefecture = wea_json.find(j => j.name.startsWith(args[0]));
+      const prefecture = wea_json.find((j) => j.name.startsWith(args[0]));
       if (prefecture === undefined) {
         super.respond("都道府県名を指定してください。");
       }
@@ -46,7 +46,7 @@ class Weather extends Command {
         "0000.json";
       const res = await axios.get(ApiURL);
       const data = res.data;
-      data[0].timeSeries[0].areas.forEach(area => {
+      data[0].timeSeries[0].areas.forEach((area) => {
         let wea_embed = new MessageEmbed();
         wea_embed
           .setTitle(data[0].publishingOffice)

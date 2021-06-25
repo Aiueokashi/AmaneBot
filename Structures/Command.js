@@ -32,7 +32,7 @@ class Command {
   async run() {
     const err = new AmaneError("NOT_PROVIDE_RUN_METHOD", this.name);
     this.message.channel.send({
-      embed: { title: err.code, description: err.message }
+      embed: { title: err.code, description: err.message },
     });
     throw err;
   }

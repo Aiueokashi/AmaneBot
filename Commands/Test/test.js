@@ -4,7 +4,7 @@ const Command = require("../../Structures/Command"),
   json = {
     name: "test",
     description: "test",
-    options: []
+    options: [],
   };
 
 class Test extends Command {
@@ -21,7 +21,7 @@ class Test extends Command {
       permLevel: 10,
       disable: false,
       guildOnly: true,
-      ownerOnly: true
+      ownerOnly: true,
     });
   }
 
@@ -32,8 +32,8 @@ class Test extends Command {
       {
         headers: {
           Authorization: "Bot " + process.env.TOKEN,
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       }
     );
     console.log(responce.data);

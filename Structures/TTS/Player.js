@@ -64,7 +64,7 @@ class TTSPlayer {
       const tts = new EventEmitter();
       const _read = () => {
         this.read(tts, data)
-          .then(buffer => {
+          .then((buffer) => {
             const voice = this.connection.play(this.bufferToStream(buffer));
             voice.on("finish", () => {
               this.queue.shift();
@@ -74,18 +74,18 @@ class TTSPlayer {
               }
             });
           })
-          .catch(e => console.log(e));
+          .catch((e) => console.log(e));
       };
       tts.on("read", () => {
         _read();
       });
       if (this.queue.length === 0) {
         const t = txt.match(/.{1,200}/g);
-        t.forEach(t => this.queue.push(t));
+        t.forEach((t) => this.queue.push(t));
         _read();
       } else {
         const t = txt.match(/.{1,200}/g);
-        t.forEach(t => this.queue.push(t));
+        t.forEach((t) => this.queue.push(t));
       }
     } else {
       message.channel.send("ボイスチャンネルに接続されていません。");
@@ -102,18 +102,18 @@ class TTSPlayer {
             ? VoiceList[data.userData.voiceType]
             : this.defaultVoiceType,
           pitch: data.userData.pitch ? data.userData.pitch : this.defaultPitch,
-          speed: data.userData.speed ? data.userData.speed : this.defaultSpeed
+          speed: data.userData.speed ? data.userData.speed : this.defaultSpeed,
         });
       } else if (data.userData.TTSMode === 2) {
         return GoogleTTS.synthesize({
           text: text,
-          voice: "ja"
+          voice: "ja",
         });
       }
     }
   }
 
-  bufferToStream = buffer => {
+  bufferToStream = (buffer) => {
     const stream = new Readable();
     stream.push(buffer);
     stream.push(null);

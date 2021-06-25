@@ -3,6 +3,7 @@ const { MessageAttachment } = require("discord.js");
 const fs = require("fs");
 const canvacord = require("canvacord");
 const Canvas = require("canvas");
+const { AmaneEmbed, PaginatedEmbed } = require("../../Structures/Embed");
 //const font = fs.readFileSync("./Assets/Font/KleeOne-Regular.ttf",'utf-8')
 
 class Rank extends Command {
@@ -17,11 +18,16 @@ class Rank extends Command {
       cooldown: 10000,
       aliases: ["xp"],
       permLevel: 0,
-      guildOnly: true
+      guildOnly: true,
     });
   }
 
   async run(message, [...args], d) {
+    let msg = await message.channel.send(
+      new AmaneEmbed(d.userData).setTitle(
+        "<a:atlanta_loading:743090350490648727>画像を生成中です..."
+      )
+    );
     const canvas = Canvas.createCanvas(934, 282);
     let ctx = canvas.getContext("2d");
     const img = await Canvas.loadImage(
@@ -43,8 +49,8 @@ class Rank extends Command {
       .registerFonts([
         {
           path: "./Assets/Font/KleeOne-Regular.ttf",
-          face: { family: "Comic Sans" }
-        }
+          face: { family: "Comic Sans" },
+        },
       ])
       .setAvatar(message.author.displayAvatarURL({ format: "png" }))
       .setCurrentXP(memberData.exp)
@@ -63,6 +69,7 @@ class Rank extends Command {
 
     const data = await rank.build();
     const attachment = new MessageAttachment(data, "RankCard.png");
+    msg.delete({ timeout: 100 });
     super.respond(attachment);
   }
 }

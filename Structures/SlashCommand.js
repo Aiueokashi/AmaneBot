@@ -5,8 +5,8 @@ const { Permissions } = require("discord.js"),
 const Header = {
   headers: {
     Authorization: "Bot " + process.env.TOKEN,
-    "Content-Type": "application/json"
-  }
+    "Content-Type": "application/json",
+  },
 };
 
 class SlashCommand {
@@ -38,7 +38,7 @@ class SlashCommand {
     const data = {
       name: this.name,
       description: this.description,
-      options: this.options
+      options: this.options,
     };
     const post = await axios.post(DEV_API_URL, data, Header);
     if (!post.data) {

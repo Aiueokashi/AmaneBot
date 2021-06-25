@@ -5,7 +5,7 @@ const ReactionRoleEvent = Object.freeze({
   MISSING_REQUIREMENTS: "missingRequirements",
   MISSING_PERMISSIONS: "missingPermissions",
   DEBUG: "debug",
-  READY: "ready"
+  READY: "ready",
 });
 
 const RequirementType = Object.freeze({
@@ -14,7 +14,7 @@ const RequirementType = Object.freeze({
   VERIFIED_DEVELOPER: 2,
   PERMISSION: 3,
   ROLES: 4,
-  USERS: 5
+  USERS: 5,
 });
 
 const ReactionRoleType = Object.freeze({
@@ -23,23 +23,24 @@ const ReactionRoleType = Object.freeze({
   TOGGLE: 2,
   JUST_WIN: 3,
   JUST_LOSE: 4,
-  REVERSED: 5
+  REVERSED: 5,
 });
 
 const ActionType = Object.freeze({
   UNKNOWN: 0,
   GIVE: 1,
-  TAKE: 2
+  TAKE: 2,
 });
 
-const isValidReactionRoleType = number =>
+const isValidReactionRoleType = (number) =>
   !isNaN(number) &&
-  (number >= ReactionRoleType.NORMAL && number <= ReactionRoleType.REVERSED);
+  number >= ReactionRoleType.NORMAL &&
+  number <= ReactionRoleType.REVERSED;
 
 module.exports = {
   RequirementType,
   ReactionRoleEvent,
   ReactionRoleType,
   ActionType,
-  isValidReactionRoleType
+  isValidReactionRoleType,
 };

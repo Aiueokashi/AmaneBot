@@ -6,7 +6,7 @@ module.exports = class CollectorManager {
 
     this.client = client;
 
-    client.on("message", message => {});
+    client.on("message", (message) => {});
     client.on("messageReactionAdd", handleMessageEvent.bind(this));
   }
 };

@@ -19,7 +19,7 @@ class Play extends Command {
       permLevel: 0,
       disable: false,
       guildOnly: true,
-      ownerOnly: false
+      ownerOnly: false,
     });
   }
 
@@ -37,7 +37,8 @@ class Play extends Command {
         .catch(console.error);
 
     const search = args.join(" ");
-    const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
+    const videoPattern =
+      /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
     const playlistPattern = /^.*(list=)([^#\&\?]*).*/gi;
     const url = args[0];
     const urlValid = videoPattern.test(args[0]);
@@ -53,7 +54,7 @@ class Play extends Command {
       songs: [],
       loop: false,
       volume: 100,
-      playing: true
+      playing: true,
     };
 
     let songInfo = null;
@@ -65,7 +66,7 @@ class Play extends Command {
         song = {
           title: songInfo.videoDetails.title,
           url: songInfo.videoDetails.video_url,
-          duration: songInfo.videoDetails.lengthSeconds
+          duration: songInfo.videoDetails.lengthSeconds,
         };
       } catch (error) {
         console.error(error);
@@ -78,7 +79,7 @@ class Play extends Command {
         song = {
           title: songInfo.videoDetails.title,
           url: songInfo.videoDetails.video_url,
-          duration: songInfo.videoDetails.lengthSeconds
+          duration: songInfo.videoDetails.lengthSeconds,
         };
       } catch (error) {
         console.error(error);
