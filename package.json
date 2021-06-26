@@ -39,6 +39,7 @@
     "request": "^2.88.2",
     "serp": "^2.1.0",
     "simple-youtube-api": "^5.2.1",
+    "string-similarity": "^4.0.4",
     "util": "^0.12.4",
     "voice-text": "^0.1.2",
     "ytdl-core": "^4.8.2",

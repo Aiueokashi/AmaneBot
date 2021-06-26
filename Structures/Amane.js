@@ -22,7 +22,8 @@ const { Client, Collection, Intents } = require("discord.js"),
 require("./Extender/Console");
 //儀式
 require("./App/KeepAlive");
-//Guild拡張
+//Guild,Message拡張
+require("./Extender/Message");
 require("./Extender/Guild");
 
 //client拡張
