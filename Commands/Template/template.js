@@ -1,5 +1,4 @@
 const Command = require("../../Structures/Command"); //コマンドクラス
-const { MessageEmbed } = require("discord.js"); //MessageEmbed
 
 class Template extends Command {
   //Commandクラスを拡張してTemplateクラスをつくる(nameの先頭を大文字にしたクラス名にするとわかりやすい)
@@ -27,7 +26,7 @@ class Template extends Command {
 
   async run(message, [...args]) {
     //ここに実行する処理(ここから先はふつうにコマンド作るときと同じ)
-    const client = this.client; //clientを使いたい場合
+    //const client = this.client; //clientを使いたい場合
     super.respond(args.join(" ")); //super.respond(送信したい内容)で送信できる。
   }
 }

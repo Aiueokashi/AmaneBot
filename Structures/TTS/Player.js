@@ -3,7 +3,7 @@ const { VoiceText } = require("voice-text");
 const { Readable } = require("stream");
 const EventEmitter = require("events");
 const GoogleTTS = require("google-translate-tts");
-const { VoiceList, Mode } = require("./Constants");
+const { VoiceList/*, Mode*/ } = require("./Constants");
 const voiceText = new VoiceText(process.env.VT_API_KEY);
 
 class TTSPlayer {

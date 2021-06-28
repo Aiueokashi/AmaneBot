@@ -19,6 +19,7 @@ class ReactionRole extends Command {
   }
 
   async run(message, [...args]) {
+    let msg;
     if (args[0])
       var role = this.client.util.resolveRole(
         args[0],
@@ -26,9 +27,9 @@ class ReactionRole extends Command {
       );
     if (args[1]) var emoji = args[1];
     if (args[2]) {
-      var msg = await message.channel.messages.fetch(args[2]);
+      msg = await message.channel.messages.fetch(args[2]);
     } else {
-      var msg = message;
+      msg = message;
     }
 
     this.client.reactionRoleManager.createReactionRole({

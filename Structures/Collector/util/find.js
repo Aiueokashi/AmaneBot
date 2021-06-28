@@ -4,7 +4,7 @@ function findRecursively({
   obj,
   key,
   value = null,
-  type = "array" | "value" | "object",
+  type = "array" || "value" || "object",
   result = [],
 }) {
   for (const k in obj) {

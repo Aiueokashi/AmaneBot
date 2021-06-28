@@ -1,7 +1,7 @@
 const Command = require("../../Structures/Command"),
   ytdl = require("ytdl-core"),
   YouTubeAPI = require("simple-youtube-api"),
-  https = require("https"),
+  //https = require("https"),
   youtube = new YouTubeAPI(process.env.YOUTUBE_API_KEY),
   { AmaneEmbed, PaginatedEmbed } = require("../../Structures/Embed");
 
@@ -26,7 +26,7 @@ class Play extends Command {
   async run(message, args, data) {
     const { channel } = message.member.voice;
 
-    const serverQueue = message.guild.ytdlCore.queue;
+    let serverQueue = message.guild.ytdlCore.queue;
     if (!channel)
       return message
         .reply("ボイスチャンネルに接続してください")

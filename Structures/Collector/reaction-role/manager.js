@@ -491,7 +491,7 @@ class ReactionRoleManager extends EventEmitter {
           );
 
         const emojiParsed = Util.parseEmoji(emoji);
-        emoji = this.__resolveReactionEmoji(emojiParsed);
+        emoji = this.__resolveReactionEmoji(emojiParsed ? emojiParsed : null);
         if (!emoji)
           return reject(
             new Error(`Bad input: I canno't resolve emoji ${emoji}`)

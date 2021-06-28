@@ -43,7 +43,7 @@ class Ping extends Command {
     });
   }
 
-  async run(message) {
+  async run(message, args, data) {
     const client = this.client;
 
     const dataEmbed = {
@@ -128,8 +128,8 @@ class Ping extends Command {
       e;
     } finally {
       //console.log(dataEmbed)
-      const embed = new MessageEmbed(dataEmbed);
-      const info = new MessageEmbed().setTitle("いんふぉ");
+      const embed = new AmaneEmbed(data.userData,dataEmbed);
+      const info = new AmaneEmbed(data.userData).setTitle("いんふぉ");
       const page = new PaginatedEmbed(message.client.user, [embed]);
       page.setInfoPage(info);
       page.run(message.channel);

@@ -1,7 +1,7 @@
 const Command = require("../../Structures/Command");
 const { MessageAttachment } = require("discord.js");
-const fs = require("fs");
-const Canvas = require("canvas");
+//const fs = require("fs");
+//const Canvas = require("canvas");
 const { Hex_Colors } = require("../../Structures/Utils/Constants");
 
 const resolveColor = (color) => {

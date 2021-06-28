@@ -1,9 +1,8 @@
 const Command = require("../../Structures/Command");
 const { MessageAttachment } = require("discord.js");
-const fs = require("fs");
 const canvacord = require("canvacord");
 const Canvas = require("canvas");
-const { AmaneEmbed, PaginatedEmbed } = require("../../Structures/Embed");
+const { AmaneEmbed } = require("../../Structures/Embed");
 //const font = fs.readFileSync("./Assets/Font/KleeOne-Regular.ttf",'utf-8')
 
 class Rank extends Command {

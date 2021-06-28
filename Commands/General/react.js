@@ -1,5 +1,4 @@
 const Command = require("../../Structures/Command");
-const { MessageEmbed } = require("discord.js");
 
 class React extends Command {
   constructor(client) {

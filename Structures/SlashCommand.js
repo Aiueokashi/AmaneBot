@@ -4,7 +4,7 @@ const { Permissions } = require("discord.js"),
   { TOKEN, DEV_API_URL } = process.env;
 const Header = {
   headers: {
-    Authorization: "Bot " + process.env.TOKEN,
+    Authorization: "Bot " + TOKEN,
     "Content-Type": "application/json",
   },
 };

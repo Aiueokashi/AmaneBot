@@ -26,7 +26,7 @@ class Test extends Command {
   }
 
   async run(message) {
-    const client = this.client;
+    //const client = this.client;
     const responce = await axios.get(
       "https://discord.com/api/v8/applications/823122293189902336/commands",
       {

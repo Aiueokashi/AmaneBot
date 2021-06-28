@@ -1,5 +1,5 @@
 const Command = require("../../Structures/Command"),
-  { AmaneEmbed, PaginatedEmbed } = require("../../Structures/Embed");
+  { AmaneEmbed } = require("../../Structures/Embed");
 
 class Leave extends Command {
   constructor(client) {

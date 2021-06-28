@@ -29,7 +29,7 @@ class ReactionRole {
 
     this.role = role && role.id ? role.id : role;
 
-    this.emoji = emoji.id || emoji.name ? emoji.id : emoji.name || emoji;
+    this.emoji = emoji.id || emoji.name ? emoji.name : emoji.id || emoji;
 
     this.winners = winners || [];
 

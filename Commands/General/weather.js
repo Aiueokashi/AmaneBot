@@ -15,7 +15,6 @@ class Weather extends Command {
       args: true,
       category: "一般",
       cooldown: 0,
-      aliases: [],
       permLevel: 0,
       guildOnly: true,
     });
@@ -33,7 +32,7 @@ class Weather extends Command {
       let Wea_embed_array = new Array();
       const prefecture = wea_json.find((j) => j.name.startsWith(args[0]));
       if (prefecture === undefined) {
-        super.respond("都道府県名を指定してください。");
+        return super.respond("都道府県名を指定してください。");
       }
       if (prefecture.id === "01") {
         return super.respond(

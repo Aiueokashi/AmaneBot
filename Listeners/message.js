@@ -1,5 +1,3 @@
-const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 class Message {
   constructor(client) {
     this.enable = true;

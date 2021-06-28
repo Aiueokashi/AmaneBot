@@ -27,13 +27,13 @@ class YTDLCore {
       });
     }
     let stream;
-    let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
+    let streamType = song ? song.url.includes("youtube.com") ? "opus" : "ogg/opus" : null;
     try {
       stream = await ytdl(song.url, { highWaterMark: 1 << 25 });
     } catch (e) {
       if (queue) {
         queue.songs.shift();
-        this.play(queue.songs[0], message);
+        this.play(queue.songs[0], message, data);
       }
       return message.channel.send(`エラー:${e.message ? e.message : e}`);
     }
@@ -48,17 +48,17 @@ class YTDLCore {
           if (queue.loop) {
             const lastSong = queue.songs.shift();
             queue.songs.push(lastSong);
-            this.play(queue.songs[0], message);
+            this.play(queue.songs[0], message, data);
           } else {
             queue.songs.shift();
-            this.play(queue.songs[0], message);
+            this.play(queue.songs[0], message, data);
           }
         }
       })
       .on("error", (err) => {
         console.log(err);
         queue.songs.shift();
-        this.play(queue.songs[0], message);
+        this.play(queue.songs[0], message, data);
       });
 
     this.dispatcher.setVolumeLogarithmic(this.volume / 100);
@@ -184,7 +184,7 @@ class YTDLCore {
     });
 
     collector.on("end", () => {
-      playingMessage.reactions.removeAll().catch(console.error);
+      playingMessage ? playingMessage.reactions.removeAll().catch(console.error) : null;
       if (queue.pruning && playingMessage && !playingMessage.deleted) {
         playingMessage.delete({ timeout: 3000 }).catch(console.error);
       }
