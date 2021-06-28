@@ -1,5 +1,5 @@
 const //chalk = require("chalk"),
-  axios = require("axios"),
+  //axios = require("axios"),
   Command = require("../../Structures/Command");
 
 class Register extends Command {

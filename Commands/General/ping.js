@@ -24,7 +24,6 @@ const components = [
   ["South Africa"],
   ["US South"],
 ];
-const { MessageEmbed } = require("discord.js");
 const { AmaneEmbed, PaginatedEmbed } = require("../../Structures/Embed");
 
 class Ping extends Command {

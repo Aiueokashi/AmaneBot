@@ -1,25 +1,6 @@
 const mongoose = require("mongoose");
-const AmaneError = require("../Structures/Extender/Error");
+//const AmaneError = require("../Structures/Extender/Error");
 const { Hex_Colors } = require("../Structures/Utils/Constants");
-
-const resolveColor = (color) => {
-  if (!color.startsWith("#")) {
-    const Hex_Code = Hex_Colors.find(
-      (c) => c.name.toLowerCase() === color.toLowerCase()
-    );
-    if (Hex_Code === undefined) {
-      return Hex_Colors[0];
-    } else {
-      return Hex_Code;
-    }
-  } else {
-    if (color.length === 7) {
-      return { hex: color.toUpperCase() };
-    } else {
-      return Hex_Colors[0];
-    }
-  }
-};
 
 const genToken = () => {
   let token = "";

@@ -35,7 +35,7 @@ class Rank extends Command {
     ctx.drawImage(img, -100, -200, 1100, 600);
 
     const client = this.client;
-    const resolveColor = client.util.resolveColor;
+    //const resolveColor = client.util.resolveColor;
     const memberData = d.memberData;
     const userData = d.userData;
     const Rank = await client.util.getRank(

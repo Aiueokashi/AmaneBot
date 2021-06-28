@@ -1,5 +1,5 @@
-const { Permissions } = require("discord.js"),
-  AmaneError = require("./Extender/Error"),
+const //{ Permissions } = require("discord.js"),
+  //AmaneError = require("./Extender/Error"),
   axios = require("axios"),
   { TOKEN, DEV_API_URL } = process.env;
 const Header = {
@@ -31,7 +31,7 @@ class SlashCommand {
 
   async del() {
     const del = await axios.delete(`${DEV_API_URL}/${this.id}`, Header);
-    console.log(del.data);
+    return del.data;
   }
 
   async create() {
@@ -49,6 +49,7 @@ class SlashCommand {
 
   async delete() {
     const del = await axios.delete(`${DEV_API_URL}`);
+    return del;
   }
 
   async array() {

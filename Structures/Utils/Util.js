@@ -6,7 +6,7 @@ const {
   } = require("discord.js"),
   SlashCommand = require("../SlashCommand"),
   AmaneError = require("../Extender/Error"),
-  { AmaneEmbed, PaginatedEmbed } = require("../Embed"),
+  { AmaneEmbed/*, PaginatedEmbed */} = require("../Embed"),
   { Hex_Colors, Colors, Emojis } = require("./Constants");
 
 class Util {

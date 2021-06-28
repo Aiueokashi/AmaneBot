@@ -19,7 +19,7 @@ class Google extends SlashCommand {
 
   async run(client) {
     const interaction = this.interaction;
-    const id = interaction.member.user.id;
+    //const id = interaction.member.user.id;
     try {
       const options = {
         host: "google.co.jp",

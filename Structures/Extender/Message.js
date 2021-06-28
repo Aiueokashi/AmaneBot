@@ -31,7 +31,7 @@ Structures.extend(
             .slice(matchedPrefix.length)
             .split(/[\s]+/gm);
           if (content[0] === "") {
-            let trash = content.shift();
+            content.shift();
           }
           const [commandPrefix, ...args] = content;
 

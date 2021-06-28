@@ -1,4 +1,4 @@
-const { AmaneEmbed } = require("../Embed");
+//const { AmaneEmbed } = require("../Embed");
 const { VoiceText } = require("voice-text");
 const { Readable } = require("stream");
 const EventEmitter = require("events");

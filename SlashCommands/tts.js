@@ -36,7 +36,7 @@ class TTS extends SlashCommand {
   }
 
   async run(client) {
-    const interaction = this.interaction;
+    //const interaction = this.interaction;
     //const id = interaction.member.user.id;
 
     super.respond({
