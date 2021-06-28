@@ -80,6 +80,8 @@ class Amane extends Client {
       "851086296889294878",
     ];
 
+    this.emojiDB = ["568120814776614924"];
+
     console.log(chalk.bold.bgRed("CLIENT [INITIALISED]"));
   }
   //ディレクトリ取得
