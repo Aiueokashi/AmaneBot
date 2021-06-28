@@ -10,9 +10,13 @@ Structures.extend(
     class extends Guild {
       constructor(client, data) {
         super(client, data);
-
         this.ttsPlayer = new TTSPlayer(this);
         this.ytdlCore = new YTDLCore(this);
+      }
+      async setPrefix(){
+        const p = await this.client.findOrCreateGuild({id:this.id},true);
+        this.prefix = p.prefix;
+        return this.prefix;
       }
     }
 );

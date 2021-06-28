@@ -180,6 +180,11 @@ class Amane extends Client {
     });
     console.log(chalk.bold.bgBlue(`CLIENT_EVENT [LISTENING]`));
   }
+  async loadGuilds() {
+    this.guilds.cache.keyArray().forEach((g) => {
+      this.guilds.cache.get(g).setPrefix();
+    });
+  }
 
   async findOrCreateUser({ id: userID }, isLean) {
     if (this.databaseCache.users.get(userID)) {

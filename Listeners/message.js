@@ -35,6 +35,8 @@ class Message {
     );
     data.userData = userData;
 
+    message.parse(data);
+
     if (data.guildData.plugins.leveling.enabled) {
       try {
         await client.util.addExp(data.memberData, message.content);
@@ -43,39 +45,16 @@ class Message {
       }
     }
     if (message.guild.ttsPlayer.connection) {
-      const prefixRegex = new RegExp(
-        `^(<@!?${message.client.user.id}>|${escapeRegex(
-          data.guildData.prefix
-        )})`
-      );
-      if (!prefixRegex.test(message.content)) {
+      if (!message._isCommand) {
         if (message.guild.ttsPlayer.readC.id === message.channel.id) {
           message.guild.ttsPlayer._run(message, data);
         }
       }
     }
 
-    const prefixRegex = new RegExp(
-      `^(<@!?${message.client.user.id}>|${escapeRegex(data.guildData.prefix)})`
-    );
-    if (!prefixRegex.test(message.content)) return;
-    const [, matchedPrefix] = message.content.match(prefixRegex);
-    let content = message.content.slice(matchedPrefix.length).split(/[\s]+/gm);
-
-    if (content[0] === "") {
-      let trash = content.shift();
-    }
-    const [commandPrefix, ...args] = content;
-
-    if (commandPrefix === undefined) return;
-
-    const command =
-      client.commands.get(commandPrefix.toLowerCase()) ||
-      client.commands.get(client.aliases.get(commandPrefix.toLowerCase()));
-
-    if (!command) return;
-    if (command.disable) return;
-    if (command.cmdCooldown.has(message.author.id))
+    if (!message.command) return;
+    if (message.command.disable) return;
+    if (message.command.cmdCooldown.has(message.author.id))
       return (
         message.delete({ timeout: 10000 }) &&
         message
@@ -83,44 +62,45 @@ class Message {
             "`<<cmd>>`コマンドは`<<time>>`秒に1回だけ使えます。"
               .replace(
                 /<<time>>/gm,
-                command.cmdCooldown.get(message.author.id) / 1000
+                message.command.cmdCooldown.get(message.author.id) / 1000
               )
-              .replace(/<<cmd>>/gm, command.name)
+              .replace(/<<cmd>>/gm, message.command.name)
           )
           .then((msg) => msg.delete({ timeout: 10000 }))
       );
-    if (command.ownerOnly && !client.owners.includes(message.author.id)) return;
+    if (message.command.ownerOnly && !client.owners.includes(message.author.id))
+      return;
 
-    if (command.guildOnly && !message.guild) return;
+    if (message.command.guildOnly && !message.guild) return;
 
-    if (command.nsfw && !message.channel.nsfw) return;
+    if (message.command.nsfw && !message.channel.nsfw) return;
 
-    if (command.args && !args.length)
+    if (message.command.args && !message.args.length)
       return message.channel.send(
-        !command.usage || ""
+        !message.command.usage || ""
           ? `${message.author} 引数がありません!`
           : {
               embed: {
-                title: `${command.name.replace(/\b\w/g, (l) =>
+                title: `${message.command.name.replace(/\b\w/g, (l) =>
                   l.toUpperCase()
                 )}`,
-                description: `> ${command.description}`,
+                description: `> ${message.command.description}`,
                 fields: [
                   {
                     name: "構文",
-                    value: `\`\`\`${command.usage}\`\`\``,
+                    value: `\`\`\`${message.command.usage}\`\`\``,
                   },
                   {
                     name: "使用例",
                     value: `\`\`\`${
-                      (command.example &&
-                        command.example
+                      (message.command.example &&
+                        message.command.example
                           .map(
                             (x) =>
                               `${
                                 message.guild.prefix ||
                                 this.client.config.prefix
-                              }${command.name} ${x}`
+                              }${message.command.name} ${x}`
                           )
                           .join("\n")) ||
                       "使用例なし"
@@ -134,24 +114,24 @@ class Message {
     if (message.guild && !client.owners.includes(message.author.id)) {
       const userPerms = message.channel
         .permissionsFor(message.member)
-        .missing(command.userPerms);
+        .missing(message.command.userPerms);
 
       if (userPerms.length)
         return message.reply("このコマンドを実行する権限がありません。");
 
       const botPerms = message.channel
         .permissionsFor(client.user)
-        .missing(command.botPerms);
+        .missing(message.command.botPerms);
 
       if (botPerms.length)
         return message.reply("botの権限設定を確認してください。");
     }
 
-    command.setMessage(message);
+    message.command.setMessage(message);
 
-    command.run(message, args, data).then((re) => {
-      if (command.cooldown > 0 && re !== "failed") {
-        command.startCooldown(message.author.id);
+    message.command.run(message, message.args, data).then((re) => {
+      if (message.command.cooldown > 0 && re !== "failed") {
+        message.command.startCooldown(message.author.id);
       }
     });
   }

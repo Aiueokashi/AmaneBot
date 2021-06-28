@@ -13,6 +13,7 @@ class Ready {
     const client = this.client;
     console.log(chalk.bold.bgBlue("CLIENT [READY]"));
     await client.loadSlashCommands(client);
+    await client.loadGuilds();
 
     /*市区町村ファイル生成 (./Json/prefecture.json)*/
 
