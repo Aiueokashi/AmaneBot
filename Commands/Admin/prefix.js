@@ -25,8 +25,8 @@ class Prefix extends Command {
     const client = this.client;
     const guild = client.findOrCreateGuild({ id: message.guild.id });
     const oldPrefix = guild.prefix;
-    if(oldPrefix === prefix){
-      return supre.respond("同じprefixは設定できません。")
+    if (oldPrefix === prefix) {
+      return supre.respond("同じprefixは設定できません。");
     }
 
     guild.prefix = prefix;

@@ -13,8 +13,8 @@ Structures.extend(
         this.ttsPlayer = new TTSPlayer(this);
         this.ytdlCore = new YTDLCore(this);
       }
-      async setPrefix(){
-        const p = await this.client.findOrCreateGuild({id:this.id},true);
+      async setPrefix() {
+        const p = await this.client.findOrCreateGuild({ id: this.id }, true);
         this.prefix = p.prefix;
         return this.prefix;
       }
