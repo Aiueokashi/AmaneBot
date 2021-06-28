@@ -70,7 +70,6 @@ class TTSPlayer {
               this.queue.shift();
               if (this.queue.length > 0) {
                 tts.emit("read");
-              } else {
               }
             });
           })
