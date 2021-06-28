@@ -15,7 +15,6 @@ const { Client, Collection, Intents } = require("discord.js"),
     MessageCollector,
     ReactionCollector,
   } = require("./Collector/index.js"),
-  Parser = require("./Parser"),
   Util = require("./Utils/Util");
 
 //console.log()拡張
@@ -34,7 +33,7 @@ class Amane extends Client {
       url: "https://discord.com/api/v8/applications/854281955168354335/commands",
       header: {
         headers: {
-          Authorization: "Bot " + process.env.TOKEN,
+          Authorization: "Bot " + TOKEN,
           "Content-Type": "application/json",
         },
       },
@@ -53,8 +52,6 @@ class Amane extends Client {
     this.owners = this.config.master;
     //util読み込み
     this.util = new Util(this);
-
-    this.commandParser = new Parser(this);
 
     this.events = new Collection();
 
