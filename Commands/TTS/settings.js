@@ -1,5 +1,5 @@
 const Command = require("../../Structures/Command");
-  //{ PaginatedEmbed } = require("../../Structures/Embed");
+//{ PaginatedEmbed } = require("../../Structures/Embed");
 
 class TTSSettings extends Command {
   constructor(client) {

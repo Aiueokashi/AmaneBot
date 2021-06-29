@@ -127,7 +127,7 @@ class Ping extends Command {
       e;
     } finally {
       //console.log(dataEmbed)
-      const embed = new AmaneEmbed(data.userData,dataEmbed);
+      const embed = new AmaneEmbed(data.userData, dataEmbed);
       const info = new AmaneEmbed(data.userData).setTitle("いんふぉ");
       const page = new PaginatedEmbed(message.client.user, [embed]);
       page.setInfoPage(info);

@@ -13,9 +13,12 @@ const ErrMsg = {
     `${name}コマンドにrunメソッドがありません。`,
   COLOR_CONVERT: (color) => `カラーコードに変換できません :${color}`,
   COLOR_RANGE: (color) => `カラーコードの範囲外です :${color}`,
-  ALREADY_LOADED: (name,id) => `${chalk.err(name)}: '${chalk.err(id)}'は既にロードされています。`,
-  MODULE_NOT_FOUND: (name,id) => `${chalk.err(name)}: '${chalk.err(id)}'は存在しません。`,
-  NOT_RELOADABLE: (name,id) => `${chalk.err(name)}: '${chalk.err(id)}'は再読み込みできません。`
+  ALREADY_LOADED: (name, id) =>
+    `${chalk.err(name)}: '${chalk.err(id)}'は既にロードされています。`,
+  MODULE_NOT_FOUND: (name, id) =>
+    `${chalk.err(name)}: '${chalk.err(id)}'は存在しません。`,
+  NOT_RELOADABLE: (name, id) =>
+    `${chalk.err(name)}: '${chalk.err(id)}'は再読み込みできません。`,
 };
 //Errorを拡張
 class AmaneError extends Error {

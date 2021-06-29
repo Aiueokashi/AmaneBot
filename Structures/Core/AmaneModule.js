@@ -1,5 +1,5 @@
 class AmaneModule {
-  constructor(id,{category = 'default'} = {}){
+  constructor(id, { category = "default" } = {}) {
     this.id = id;
     this.categoryID = category;
     this.category = null;
@@ -7,13 +7,13 @@ class AmaneModule {
     this.client = null;
     this.handler = null;
   }
-  reload(){
+  reload() {
     return this.handler.reload(this.id);
   }
-  remove(){
+  remove() {
     return this.handler.remove(this.id);
   }
-  toString(){
+  toString() {
     return this.id;
   }
 }
