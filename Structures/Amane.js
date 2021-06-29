@@ -8,11 +8,11 @@ const { Client, Collection, Intents } = require("discord.js"),
   { /*MONGO_URL,*/ TOKEN /*DEV_API_URL*/ } = process.env,
   axios = require("axios"),
   mongoose = require("mongoose"),
-  {
+  /*{
     ReactionRoleManager,
     MessageCollector,
     ReactionCollector,
-  } = require("./Collector/index.js"),
+  } = require("./Collector/index.js"),*/
   Util = require("./Utils/Util");
 
 //console.log()拡張
@@ -52,13 +52,6 @@ class Amane extends Client {
     this.util = new Util(this);
 
     this.events = new Collection();
-
-    this.reactionRoleManager = new ReactionRoleManager(this, {
-      storage: true,
-      mongoDbLink: process.env.MONGO_URL,
-    });
-    this.reactionCollector = ReactionCollector;
-    this.messageCollector = MessageCollector;
 
     this.guildsData = require("../Models/Guilds");
     this.membersData = require("../Models/Members");
