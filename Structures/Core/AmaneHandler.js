@@ -13,7 +13,7 @@ class AmaneHandler extends EventEmitter {
     client,
     {
       directory,
-      classToHandle = AkairoModule,
+      classToHandle = AmaneModule,
       extensions = [".js", ".json"],
       automateCategories = false,
       loadFilter = () => true,
