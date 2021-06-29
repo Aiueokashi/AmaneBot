@@ -1,5 +1,4 @@
 const { Permissions } = require("discord.js"),
-  //CommandParameter = require("./Extender/Parameter/CommandParameter"),
   AmaneError = require("./Extender/Error");
 
 class Command {

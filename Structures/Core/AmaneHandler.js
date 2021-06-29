@@ -1,6 +1,6 @@
 const AmaneError = require("../Extender/Error"),
   AmaneModule = require("./AmaneModule"),
-  glob = require("glob"),
+  //glob = require("glob"),
   fs = require("fs"),
   path = require("path"),
   { Collection } = require("discord.js"),

@@ -14,6 +14,32 @@ class Util {
     this.client = client;
   }
 
+  static isPromise(value) {
+    return (
+      value &&
+      typeof value.then === "function" &&
+      typeof value.catch === "function"
+    );
+  }
+
+  static intoCallable(thing) {
+    if (typeof thing === "function") {
+      return thing;
+    }
+
+    return () => thing;
+  }
+
+  static choice(...xs) {
+    for (const x of xs) {
+      if (x != null) {
+        return x;
+      }
+    }
+
+    return null;
+  }
+
   canModifyQueue(member) {
     const { channelID } = member.voice;
     const botChannel = member.guild.voice.channelID;

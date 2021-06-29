@@ -19,6 +19,7 @@ const ErrMsg = {
     `${chalk.err(name)}: '${chalk.err(id)}'は存在しません。`,
   NOT_RELOADABLE: (name, id) =>
     `${chalk.err(name)}: '${chalk.err(id)}'は再読み込みできません。`,
+  UNKNOWN_MATCH_TYPE: (match) => `${chalk.err(match)} 一致するマッチタイプが存在しません`
 };
 //Errorを拡張
 class AmaneError extends Error {
