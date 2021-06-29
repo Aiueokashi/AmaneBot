@@ -8,7 +8,7 @@ const AmaneError = require("../Extender/Error"),
   Category = require("../Extender/category"),
   EventEmitter = require("events");
 
-class AmaneHandler {
+class AmaneHandler extends EventEmitter {
   constructor(
     client,
     {
