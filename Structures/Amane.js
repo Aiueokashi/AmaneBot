@@ -5,9 +5,10 @@ const { Client, Collection, Intents } = require("discord.js"),
   COMMAND = require("./Command"),
   SLASHCOMMAND = require("./SlashCommand"),
   AmaneError = require("./Extender/Error"),
-  { /*MONGO_URL,*/ TOKEN /*DEV_API_URL*/ } = process.env,
+  { MONGO_URL, TOKEN /*DEV_API_URL*/ } = process.env,
   axios = require("axios"),
   mongoose = require("mongoose"),
+  EventEmmiter = require("events"),
   /*{
     ReactionRoleManager,
     MessageCollector,
@@ -70,6 +71,8 @@ class Amane extends Client {
 
     this.emojiDB = ["568120814776614924"];
 
+    this.emitter = new EventEmmiter();
+
     console.log(chalk.bold.bgRed("CLIENT [INITIALISED]"));
   }
   //ディレクトリ取得
@@ -113,9 +116,6 @@ class Amane extends Client {
       }
     });
     console.log(chalk.bold.bgBlue(`CLIENT_COMMAND [REGISTERING...]`));
-  }
-  async loadDatabse() {
-    mongoose.connect(process.env.MONGO_URL);
   }
   async loadSlashCommands(client) {
     const SCData = await axios.get(client.slcUtil.url, client.slcUtil.header);
@@ -252,6 +252,13 @@ class Amane extends Client {
   async login() {
     try {
       await super.login(TOKEN);
+      await mongoose.connect(MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true,
+      });
+      this.emitter.emit("ready");
     } catch (e) {
       console.log(e);
     }

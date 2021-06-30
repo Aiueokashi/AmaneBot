@@ -15,7 +15,7 @@ class ReactionRole extends Command {
       userPerms: ["ADMINISTRATOR"],
       permLevel: 9,
       ownerOnly: false,
-      disable:true,
+      disable: true,
     });
   }
 
