@@ -6,7 +6,9 @@ class MessageUpdate {
 
   async run(oldMessage, newMessage) {
     this.client.events.get("message").run(newMessage);
-    this.client.debug(this.client.chalk.bold.green(`MessageUpdate: (${oldMessage.id})`))
+    this.client.debug(
+      this.client.chalk.bold.green(`MessageUpdate: (${oldMessage.id})`)
+    );
   }
 }
 

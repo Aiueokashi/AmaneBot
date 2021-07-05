@@ -10,8 +10,8 @@ console.log = function () {
     "[" + moment().tz("Asia/Tokyo").format("YYYY/MM/DD HH:mm:ss") + "] ";
   Array.prototype.unshift.call(arguments, chalk.bold(timestamp));
   oldConsole.apply(this, arguments);
-}
-if(config.debug){
+};
+if (config.debug) {
   console.debug = console.log;
-  console.log = function(){}
+  console.log = function () {};
 }
