@@ -6,6 +6,7 @@ class Message {
 
   async run(message) {
     const client = this.client;
+    client.debug(client.chalk.bold.green(`Message: (${message.id})`))
     const data = {};
 
     if (message.author.bot || message.system) return;

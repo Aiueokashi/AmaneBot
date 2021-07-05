@@ -8,7 +8,6 @@ class GuildMemberAdd {
   }
 
   async run(member) {
-    console.log("a");
     const client = this.client;
     const guildData = await client.findOrCreateGuild({ id: member.guild.id });
 

@@ -11,7 +11,8 @@ class Ready {
   }
   async run() {
     const client = this.client;
-    console.log(chalk.bold.bgBlue("CLIENT [READY]"));
+    console.log(chalk.bold.bgBlue("CLIENT [READY]: "+client.user.tag));
+    client.debug(chalk.bold.bgBlue("CLIENT [READY]: "+client.user.tag));
     await client.loadSlashCommands(client);
     await client.loadGuilds();
 
