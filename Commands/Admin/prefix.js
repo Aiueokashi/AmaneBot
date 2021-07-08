@@ -9,7 +9,12 @@ class Prefix extends Command {
       description: "サーバーで使うprefixを設定します。",
       usage: "amaneprefix <string>",
       example: ["a!", "+"],
-      args: true,
+      args: [
+                {
+                    id: 'prefix',
+                    type: 'string',
+                }
+            ],
       category: "Admin",
       cooldown: 100000,
       userPerms: ["ADMINISTRATOR"],

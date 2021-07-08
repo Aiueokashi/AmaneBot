@@ -8,7 +8,7 @@ class Help extends Command {
       description: "ヘルプ表示",
       usage: "help",
       example: [],
-      args: false,
+      args: [],
       category: "一般",
       cooldown: 0,
       aliases: [],

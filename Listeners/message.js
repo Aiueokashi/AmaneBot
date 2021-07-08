@@ -74,7 +74,7 @@ class Message {
 
     if (message.command.nsfw && !message.channel.nsfw) return;
 
-    if (message.command.args && !message.args.length)
+    /*if (message.command.args && !message.args.length)
       return message.channel.send(
         !message.command.usage || ""
           ? `${message.author} 引数がありません!`
@@ -109,7 +109,7 @@ class Message {
               },
             }
       );
-
+*/
     if (message.guild && !client.owners.includes(message.author.id)) {
       const userPerms = message.channel
         .permissionsFor(message.member)
@@ -127,6 +127,8 @@ class Message {
     }
 
     message.command.setMessage(message);
+
+    message.command.parse(message,message.content)
 
     message.command.run(message, message.args, data).then((re) => {
       if (message.command.cooldown > 0 && re !== "failed") {

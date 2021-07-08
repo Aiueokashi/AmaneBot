@@ -100,7 +100,7 @@ class Amane extends Client {
   }
   //コマンド登録
   async loadCommands() {
-    glob(`${this.directory}/Commands/**/*.js`, (err, files) => {
+    glob(`${this.directory}/Commands/General/*.js`, (err, files) => {
       if (err) throw new Error(err);
       for (const file of files) {
         delete require.cache[[`${file}`]];

@@ -8,7 +8,12 @@ class Leveling extends Command {
       description: "レベリング機能のオン/オフを切り替えます。",
       usage: "leveling <enable/disable>",
       example: ["enable"],
-      args: true,
+      args: [
+                {
+                    id: 'switch',
+                    type: 'string',
+                }
+            ],
       category: "Admin",
       cooldown: 10000,
       userPerms: ["ADMINISTRATOR"],

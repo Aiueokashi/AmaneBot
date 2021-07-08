@@ -1,4 +1,7 @@
 const { Permissions } = require("discord.js"),
+  ContentParser = require("./Command/ContentParser"),
+  ArgumentRunner = require("./Command/Argument/ArgumentRunner"),
+  Argument = require("./Command/Argument/Argument"),
   AmaneError = require("./Extender/Error");
 
 class Command {
@@ -10,7 +13,11 @@ class Command {
     this.description = options.description || "説明なし";
     this.example = options.example || [];
     this.category = options.category || "一般";
-    this.args = options.args || false;
+    this.quoted = options.quoted || true;
+    this.separator = options.separator || "";
+    this.args = options.args || [];
+    this.flags = options.flags || [];
+    this.optionFlags = options.optionFlags || [];
     this.usage = options.usage || null;
     this.cooldown = options.cooldown || 1000;
     this.disable = options.disable || false;
@@ -26,6 +33,23 @@ class Command {
     this.ownerOnly = options.ownerOnly || false;
     this.nsfw = options.nsfw || false;
     this.cmdCooldown = new Map();
+    const { flagWords, optionFlagWords } = Array.isArray(this.args)
+            ? ContentParser.getFlags(this.args)
+            : { flagWords: this.flags, optionFlagWords: this.optionFlags };
+
+    const  quoted = this.quoted;
+    const separator = this.separator;
+        this.contentParser = new ContentParser({
+            flagWords,
+            optionFlagWords,
+            quoted,
+            separator
+        });
+
+        this.argumentRunner = new ArgumentRunner(this);
+        this.argumentGenerator = Array.isArray(this.args)
+            ? ArgumentRunner.fromArguments(this.args.map(arg => [arg.id, new Argument(this, arg)]))
+            : this.args.bind(this);
   }
 
   async run() {
@@ -35,8 +59,6 @@ class Command {
     });
     throw err;
   }
-
-  _run() {}
 
   startCooldown(user) {
     this.cmdCooldown.set(user, this.cooldown);
@@ -52,6 +74,10 @@ class Command {
   respond(message) {
     return this.message.channel.send(message);
   }
+  parse(message, content) {
+        const parsed = this.contentParser.parse(content);
+        return this.argumentRunner.run(message, parsed, this.argumentGenerator);
+    }
 }
 
 module.exports = Command;

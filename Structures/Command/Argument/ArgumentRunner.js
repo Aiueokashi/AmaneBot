@@ -1,6 +1,6 @@
-const AmaneError = require("../../Extender/AmaneError");
+const AmaneError = require("../../Extender/Error");
 const Argument = require("./Argument");
-const { ArgumentMatches } = require("../../Core/Constants");
+const { ArgumentMatches } = require("../Constants");
 const Flag = require("../Flag");
 
 class ArgumentRunner {

@@ -30,7 +30,11 @@ class Rank extends Command {
       description: "テーマカラーの変更",
       usage: "color <colorname>",
       example: ["blue", "#ff00ff"],
-      args: true,
+      args: [{
+                    id: 'color',
+                    type: 'string',
+                    default: 'red'
+                }],
       category: "一般",
       cooldown: 10000,
       aliases: [],

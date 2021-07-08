@@ -1,4 +1,4 @@
-const { ArgumentMatches, ArgumentTypes } = require("../../Core/Constants"),
+const { ArgumentMatches, ArgumentTypes } = require("../Constants"),
   Flag = require("../Flag"),
   { choice, intoCallable, isPromise } = require("../../Utils/Util");
 

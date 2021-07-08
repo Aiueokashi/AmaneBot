@@ -33,7 +33,7 @@ class Ping extends Command {
       description: "pingコマンド",
       usage: "ping",
       example: [],
-      args: false,
+      args: [],
       category: "一般",
       cooldown: 10000,
       aliases: ["🏓"],

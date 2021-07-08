@@ -12,7 +12,10 @@ class Weather extends Command {
       description: "今日,明日,明後日の天気を表示します",
       usage: "weather [city name]",
       example: ["東京"],
-      args: true,
+      args: [{
+        id:"prefecture",
+        type:"string"
+      }],
       category: "一般",
       cooldown: 0,
       permLevel: 0,
