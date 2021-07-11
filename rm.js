@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = "";
+const path = "./Structures/Command/CommandUtil.js";
 const str = fs.readFileSync(path, "UTF-8");
 
 fs.writeFileSync(

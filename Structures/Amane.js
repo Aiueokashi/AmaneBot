@@ -9,12 +9,9 @@ const { Client, Collection, Intents } = require("discord.js"),
   axios = require("axios"),
   mongoose = require("mongoose"),
   EventEmmiter = require("events"),
-  /*{
-    ReactionRoleManager,
-    MessageCollector,
-    ReactionCollector,
-  } = require("./Collector/index.js"),*/
   Util = require("./Utils/Util"),
+  //CommandHandler = require("./Command/CommandHandler"),
+  //{ stripIndents } = require('common-tags'),
   cli = require("cli-progress");
 
 //console.log()拡張
@@ -100,7 +97,7 @@ class Amane extends Client {
   }
   //コマンド登録
   async loadCommands() {
-    glob(`${this.directory}/Commands/General/*.js`, (err, files) => {
+    glob(`${this.directory}/Commands/**/*.js`, (err, files) => {
       if (err) throw new Error(err);
       for (const file of files) {
         delete require.cache[[`${file}`]];

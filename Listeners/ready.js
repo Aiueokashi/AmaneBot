@@ -31,6 +31,7 @@ class Ready {
     fs.writeFileSync('prefecture.json',JSON.stringify(preArray))*/
 
     //<<<<<<<<<<<<<<<===================for debug====================>>>>>>>>>>>>>>>>>
+    //console.log(client.commandHandler)
   }
 }
 

@@ -9,7 +9,7 @@ class ReactionRole extends Command {
         "ロールパネルを作ります。\n第一引数にロールID&メンション、第二引数にリアクションに使う絵文字を設定します。\nリアクションをつけるメッセージを指定したい場合は第三引数にメッセージIDを入れてください。",
       usage: "rolepanel @role <emoji> (messageId)",
       example: ["@verified  ✅ 1234567890123"],
-      args: [],
+      args: true,
       category: "Admin",
       cooldown: 1000,
       userPerms: ["ADMINISTRATOR"],
