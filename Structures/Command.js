@@ -43,21 +43,25 @@ class Command {
     throw err;
   }
   
-  resolve(){
+  async resolve(){
     if(this.types === null || this.types === []){
       this.resolvedargs.push(null)
       return 
     }
-
-    this.types.forEach((type,index) => {
-      this.resolvedargs[type.id] = this.resolver.type(type.type)(this.message,this.nonparse ? this.message.args :this.message.args[index]);
-      
+    let flag = false;
+    let i = 0;
+    for await (const type of this.types){
+      this.resolvedargs[type.id] = await this.resolver.type(type.type)(this.message,this.nonparse ? this.message.args :this.message.args[i]);
       if(this.resolvedargs[type.id] === null){
-        this.event.emit('TYPE_INVALID',this);
+        flag = true;
+        this.message.channel.send('引数の型が間違っています。');
       }
-    })
-    return this.resolvedargs;
+      i++;
+    }
+    
+    return flag ? undefined : this.resolvedargs;
   }
+  
 
   startCooldown(user) {
     this.cmdCooldown.set(user, this.cooldown);

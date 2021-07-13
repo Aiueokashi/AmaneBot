@@ -12,14 +12,14 @@ class Template extends Command {
       usage: "template [message]", //使い方(prefixを除いて書く)
       example: ["aaaaa", "ああああ"], //下の、argsがtrueになっているのに、コマンドに引数がないとコマンドが実行されず、ここに書いてある具体例が送信される
       args: true, //trueにするとコマンドに引数がなかった場合、実行されず代わりに上のusageとexampleが送信される。
-      nonparse: true //trueにすると引数がスペースで分割されなくなる。
-      types:[{
+      nonparse: true, //trueにすると引数がスペースで分割されなくなる。
+      types:[{//配列で指定
         id:'str',//第一引数(args.str)
         type:'string',//string型
       },{
         id:'target',//第二引数(args.target)
         type:'member',//memberクラス
-      }]
+      }],
       disable: false, //このコマンドが使用可能か(trueにすると実行されず、helpでメンテナンス中と表示される)
       category: "テンプレート", //特に意味はない、できればフォルダの日本語訳で
       cooldown: 10000, //再使用できるようになるまでのクールダウン単位はms

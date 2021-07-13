@@ -2,26 +2,6 @@ const Command = require("../../Structures/Command");
 //const { MessageAttachment } = require("discord.js");
 //const fs = require("fs");
 //const Canvas = require("canvas");
-const { Hex_Colors } = require("../../Structures/Utils/Constants");
-
-const resolveColor = (color) => {
-  if (!color.startsWith("#")) {
-    const Hex_Code = Hex_Colors.find(
-      (c) => c.name.toLowerCase() === color.toLowerCase()
-    );
-    if (Hex_Code === undefined) {
-      return Hex_Colors[0].hex;
-    } else {
-      return Hex_Code.hex;
-    }
-  } else {
-    if (color.length === 7) {
-      return color.toUpperCase();
-    } else {
-      return Hex_Colors[0].hex;
-    }
-  }
-};
 
 class Rank extends Command {
   constructor(client) {
@@ -34,7 +14,7 @@ class Rank extends Command {
       nonparse: true,
       types: [{
         id:'color',
-        type:'string',
+        type:'color',
       }],
       category: "一般",
       cooldown: 10000,
@@ -46,8 +26,7 @@ class Rank extends Command {
 
   async run(message, args) {
     const client = this.client;
-    console.log(args)
-    const Color = resolveColor(args.color);
+    const Color = args.color;
     let userData = await client.findOrCreateUser({ id: message.author.id });
     userData.color = Color;
 

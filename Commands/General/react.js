@@ -8,23 +8,29 @@ class React extends Command {
       usage: "react [string] <messageID>",
       example: ["pro 1234567890123", "nice 1234567890123"],
       args: true,
+      types:[{
+        id:'emoji',
+        type:'string',
+      },{
+        id:'message',
+        type:'message',
+      }],
       category: "一般",
-      cooldown: 10000,
+      cooldown: 1000,
       aliases: [],
       permLevel: 0,
       guildOnly: true,
     });
   }
 
-  async run(message, [...args]) {
+  async run(message, args, data) {
     const client = this.client;
-    if (client.util.hasSameStr(args[0])) {
+    if (client.util.hasSameStr(args.emoji)) {
       return super.respond("同じ文字のリアクションはつけることができません");
     }
-    const msg = await message.channel.messages.fetch(args[1]);
-    args[0].split("").forEach((str) => {
+    args.emoji.split("").forEach((str) => {
       const emoji = client.util.strToEmoji(str);
-      msg.react(emoji.unicode);
+      args.message.react(emoji.unicode);
     });
   }
 }

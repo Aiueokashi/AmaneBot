@@ -11,6 +11,11 @@ class Eval extends Command {
       description: "Evaluate/Execute JavaScript code",
       usage: "eval [...code]",
       args: true,
+      types:[{
+        id:"code",
+        type:"string"
+      }],
+      nonparse: true,
       category: "Owner",
       cooldown: 0,
       permLevel: 10,
@@ -18,9 +23,9 @@ class Eval extends Command {
     });
   }
 
-  async run(message, [...code], data) {
+  async run(message, args, data) {
     try {
-      let evaled = await eval(code.join(" "));
+      let evaled = await eval(args.code);
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled, { depth: 0 });
       if (evaled.includes(this.client.token))

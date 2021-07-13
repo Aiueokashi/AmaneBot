@@ -12,12 +12,13 @@ class Weather extends Command {
       description: "今日,明日,明後日の天気を表示します",
       usage: "weather [city name]",
       example: ["東京"],
-      args: [{
+      args:true,
+      types: [{
         id:"prefecture",
         type:"string"
       }],
       category: "一般",
-      cooldown: 0,
+      cooldown: 10000,
       permLevel: 0,
       guildOnly: true,
     });
@@ -26,14 +27,13 @@ class Weather extends Command {
   get directory() {
     return `${path.dirname(require.main.filename)}${path.sep}`;
   }
-  async run(message, [...args]) {
+  async run(message, args) {
     const client = this.client;
     const wea_json = JSON.parse(
       fs.readFileSync(`${this.directory}/Assets/Json/prefecture.json`, "utf8")
     );
-    if (args[0]) {
       let Wea_embed_array = new Array();
-      const prefecture = wea_json.find((j) => j.name.startsWith(args[0]));
+      const prefecture = wea_json.find((j) => j.name.startsWith(args.prefecture));
       if (prefecture === undefined) {
         return super.respond("都道府県名を指定してください。");
       }
@@ -70,5 +70,4 @@ class Weather extends Command {
       client.util.createPageEmbed(message, Wea_embed_array, true, true);
     }
   }
-}
 module.exports = Weather;

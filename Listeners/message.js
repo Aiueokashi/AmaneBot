@@ -127,7 +127,11 @@ class Message {
 
     message.command.setMessage(message);
     if(message.command.args){
-      message.command.resolve();
+
+      const t = await message.command.resolve()
+      if(t === undefined){
+        return
+      }
     }
 
     message.command.run(message, message.command.resolvedargs, data).then((re) => {
