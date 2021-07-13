@@ -83,7 +83,7 @@ class Amane extends Client {
 
     this.debug = function (message) {
       if (this.config.debug === true) {
-        return console.debug(`${chalk.bold.bgCyan("DEBUG:")} ${message}`);
+        return console.debug(`${message}`);
       } else {
         return null;
       }

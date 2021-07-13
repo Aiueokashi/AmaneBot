@@ -3,14 +3,10 @@ const { Collection } = require("discord.js");
 const { URL } = require("url");
 
 class TypeResolver {
-  constructor(handler) {
-    this.client = handler.client;
+  constructor(command) {
+    this.client = command.client;
 
-    this.commandHandler = handler;
-
-    this.inhibitorHandler = null;
-
-    this.listenerHandler = null;
+    this.command = command;
 
     this.types = new Collection();
 

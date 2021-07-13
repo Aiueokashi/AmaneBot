@@ -31,6 +31,11 @@ class Rank extends Command {
       usage: "color <colorname>",
       example: ["blue", "#ff00ff"],
       args:true,
+      nonparse: true,
+      types: [{
+        id:'color',
+        type:'string',
+      }],
       category: "一般",
       cooldown: 10000,
       aliases: [],
@@ -39,9 +44,10 @@ class Rank extends Command {
     });
   }
 
-  async run(message, [...args]) {
+  async run(message, args) {
     const client = this.client;
-    const Color = resolveColor(args.join(" "));
+    console.log(args)
+    const Color = resolveColor(args.color);
     let userData = await client.findOrCreateUser({ id: message.author.id });
     userData.color = Color;
 

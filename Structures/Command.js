@@ -1,4 +1,6 @@
 const { Permissions } = require("discord.js"),
+  TypeResolver = require("./Command/Argument/TypeResolver"),
+  EventEmitter = require("events"),
   AmaneError = require("./Extender/Error");
 
 class Command {
@@ -6,11 +8,16 @@ class Command {
     this.client = client;
 
     this.name = options.name || null;
+    this.event = new EventEmitter();
+    this.resolver = new TypeResolver(this);
+    this.resolvedargs = new Array();
     this.aliases = options.aliases || [];
     this.description = options.description || "説明なし";
     this.example = options.example || [];
     this.category = options.category || "一般";
     this.args = options.args || false;
+    this.types = options.types || null;
+    this.nonparse = options.nonparse || false;
     this.usage = options.usage || null;
     this.cooldown = options.cooldown || 1000;
     this.disable = options.disable || false;
@@ -34,6 +41,22 @@ class Command {
       embed: { title: err.code, description: err.message },
     });
     throw err;
+  }
+  
+  resolve(){
+    if(this.types === null || this.types === []){
+      this.resolvedargs.push(null)
+      return 
+    }
+
+    this.types.forEach((type,index) => {
+      this.resolvedargs[type.id] = this.resolver.type(type.type)(this.message,this.nonparse ? this.message.args :this.message.args[index]);
+      
+      if(this.resolvedargs[type.id] === null){
+        this.event.emit('TYPE_INVALID',this);
+      }
+    })
+    return this.resolvedargs;
   }
 
   startCooldown(user) {

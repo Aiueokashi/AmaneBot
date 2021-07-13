@@ -12,6 +12,14 @@ class Template extends Command {
       usage: "template [message]", //使い方(prefixを除いて書く)
       example: ["aaaaa", "ああああ"], //下の、argsがtrueになっているのに、コマンドに引数がないとコマンドが実行されず、ここに書いてある具体例が送信される
       args: true, //trueにするとコマンドに引数がなかった場合、実行されず代わりに上のusageとexampleが送信される。
+      nonparse: true //trueにすると引数がスペースで分割されなくなる。
+      types:[{
+        id:'str',//第一引数(args.str)
+        type:'string',//string型
+      },{
+        id:'target',//第二引数(args.target)
+        type:'member',//memberクラス
+      }]
       disable: false, //このコマンドが使用可能か(trueにすると実行されず、helpでメンテナンス中と表示される)
       category: "テンプレート", //特に意味はない、できればフォルダの日本語訳で
       cooldown: 10000, //再使用できるようになるまでのクールダウン単位はms
@@ -24,10 +32,10 @@ class Template extends Command {
     });
   }
 
-  async run(message, [...args]) {
+  async run(message, args) {
     //ここに実行する処理(ここから先はふつうにコマンド作るときと同じ)
     //const client = this.client; //clientを使いたい場合
-    super.respond(args.join(" ")); //super.respond(送信したい内容)で送信できる。
+    super.respond(args.member); //super.respond(送信したい内容)で送信できる。この場合、第二引数のメンバーのメンションが送信される。
   }
 }
 

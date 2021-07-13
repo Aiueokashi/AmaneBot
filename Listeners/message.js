@@ -126,8 +126,11 @@ class Message {
     }
 
     message.command.setMessage(message);
+    if(message.command.args){
+      message.command.resolve();
+    }
 
-    message.command.run(message, message.args, data).then((re) => {
+    message.command.run(message, message.command.resolvedargs, data).then((re) => {
       if (message.command.cooldown > 0 && re !== "failed") {
         message.command.startCooldown(message.author.id);
       }
