@@ -26,7 +26,7 @@ class Prefix extends Command {
     const guild = client.findOrCreateGuild({ id: message.guild.id });
     const oldPrefix = guild.prefix;
     if (oldPrefix === prefix) {
-      return supre.respond("同じprefixは設定できません。");
+      return super.respond("同じprefixは設定できません。");
     }
 
     guild.prefix = prefix;
@@ -38,6 +38,7 @@ class Prefix extends Command {
       .setTimestamp();
 
     super.respond(prefix_embed);
+    return 0;
   }
 }
 

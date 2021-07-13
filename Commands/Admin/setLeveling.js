@@ -6,9 +6,13 @@ class Leveling extends Command {
       name: "leveling",
       aliases: ["lvl"],
       description: "レベリング機能のオン/オフを切り替えます。",
-      usage: "leveling <enable/disable>",
-      example: ["enable"],
+      usage: "leveling <true/false>",
+      example: ["true"],
       args: true,
+      types:[{
+        id:'switch',
+        type:'boolean'
+      }],
       category: "Admin",
       cooldown: 10000,
       userPerms: ["ADMINISTRATOR"],
@@ -17,15 +21,12 @@ class Leveling extends Command {
     });
   }
 
-  async run(message, [...args]) {
-    if (args[0] !== "enable" && args[0] !== "disable") {
-      return super.respond("`enable`か`disable`のどちらかを指定してください。");
-    }
+  async run(message, args) {
     const client = this.client;
     let guildData = await client.findOrCreateGuild({ id: message.guild.id });
     const now = guildData.plugins.leveling.enabled;
 
-    if (args[0] === "enable") {
+    if (args.switch) {
       if (now === true) {
         return super.respond("既にオンです");
       } else {
@@ -38,7 +39,8 @@ class Leveling extends Command {
         return super.respond("既にオフです");
       } else {
         guildData.plugins.leveling.enabled = false;
-        await guildData.save("設定をオフにしました。");
+        await guildData.save();
+        return super.respond("設定をオフにしました。");
       }
     }
   }
