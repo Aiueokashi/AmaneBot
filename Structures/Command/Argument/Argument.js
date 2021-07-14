@@ -52,30 +52,19 @@ class Argument {
     return this.command.client;
   }
 
-  get handler() {
-    return this.command.handler;
-  }
-
   async process(message, phrase) {
     const commandDefs = this.command.argumentDefaults;
-    const handlerDefs = this.handler.argumentDefaults;
     const optional = choice(
       this.prompt && this.prompt.optional,
-      commandDefs.prompt && commandDefs.prompt.optional,
-      handlerDefs.prompt && handlerDefs.prompt.optional
+      commandDefs.prompt && commandDefs.prompt.optional
     );
 
     const doOtherwise = async (failure) => {
-      const otherwise = choice(
-        this.otherwise,
-        commandDefs.otherwise,
-        handlerDefs.otherwise
-      );
+      const otherwise = choice(this.otherwise, commandDefs.otherwise);
 
       const modifyOtherwise = choice(
         this.modifyOtherwise,
-        commandDefs.modifyOtherwise,
-        handlerDefs.modifyOtherwise
+        commandDefs.modifyOtherwise
       );
 
       let text = await intoCallable(otherwise).call(this, message, {
@@ -131,12 +120,11 @@ class Argument {
   }
 
   cast(message, phrase) {
-    return Argument.cast(this.type, this.handler.resolver, message, phrase);
+    return Argument.cast(this.type, this.command.resolver, message, phrase);
   }
 
   async collect(message, commandInput = "", parsedInput = null) {
     const promptOptions = {};
-    Object.assign(promptOptions, this.handler.argumentDefaults.prompt);
     Object.assign(promptOptions, this.command.argumentDefaults.prompt);
     Object.assign(promptOptions, this.prompt || {});
 
@@ -252,7 +240,7 @@ class Argument {
       }
 
       if (promptOptions.breakout) {
-        const looksLike = await this.handler.parseCommand(input);
+        const looksLike = await this.parseCommand(input);
         if (looksLike && looksLike.command) return Flag.retry(input);
       }
 

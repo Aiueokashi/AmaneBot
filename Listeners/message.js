@@ -126,19 +126,20 @@ class Message {
     }
 
     message.command.setMessage(message);
-    if(message.command.args){
-
-      const t = await message.command.resolve()
-      if(t === undefined){
-        return
+    if (message.command.args) {
+      const t = await message.command.resolve();
+      if (t === undefined) {
+        return;
       }
     }
 
-    message.command.run(message, message.command.resolvedargs, data).then((re) => {
-      if (message.command.cooldown > 0 && re !== "failed") {
-        message.command.startCooldown(message.author.id);
-      }
-    });
+    message.command
+      .run(message, message.command.resolvedargs, data)
+      .then((re) => {
+        if (message.command.cooldown > 0 && re !== "failed") {
+          message.command.startCooldown(message.author.id);
+        }
+      });
   }
 }
 

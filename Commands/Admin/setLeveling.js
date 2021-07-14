@@ -9,10 +9,12 @@ class Leveling extends Command {
       usage: "leveling <true/false>",
       example: ["true"],
       args: true,
-      types:[{
-        id:'switch',
-        type:'boolean'
-      }],
+      types: [
+        {
+          id: "switch",
+          type: "boolean",
+        },
+      ],
       category: "Admin",
       cooldown: 10000,
       userPerms: ["ADMINISTRATOR"],

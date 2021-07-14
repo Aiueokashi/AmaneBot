@@ -12,7 +12,7 @@ class Rank extends Command {
       description: "xpやlevelの確認",
       usage: "help",
       example: [],
-      args:false,
+      args: false,
       category: "一般",
       cooldown: 10000,
       aliases: ["xp"],

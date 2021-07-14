@@ -14,8 +14,11 @@ console.log = function () {
 if (config.debug) {
   console.debug = function () {
     let timestamp =
-    "[" + moment().tz("Asia/Tokyo").format("YYYY/MM/DD HH:mm:ss") + "] " + chalk.bold.bgCyan("DEBUG:");
+      "[" +
+      moment().tz("Asia/Tokyo").format("YYYY/MM/DD HH:mm:ss") +
+      "] " +
+      chalk.bold.bgCyan("DEBUG:");
     Array.prototype.unshift.call(arguments, chalk.bold.magenta(timestamp));
     oldConsole.apply(this, arguments);
-  }
+  };
 }

@@ -42,26 +42,37 @@ class Command {
     });
     throw err;
   }
-  
-  async resolve(){
-    if(this.types === null || this.types === []){
-      this.resolvedargs.push(null)
-      return 
+
+  async resolve() {
+    if (this.types === null || this.types === []) {
+      return;
     }
     let flag = false;
     let i = 0;
-    for await (const type of this.types){
-      this.resolvedargs[type.id] = await this.resolver.type(type.type)(this.message,this.nonparse ? this.message.args :this.message.args[i]);
-      if(this.resolvedargs[type.id] === null){
-        flag = true;
-        this.message.channel.send('引数の型が間違っています。');
+    for await (const type of this.types) {
+      this.resolvedargs[type.id] = await this.resolver.type(type.type)(
+        this.message,
+        this.nonparse ? this.message.args : this.message.args[i]
+      );
+      if (this.resolvedargs[type.id] === null) {
+        if (type.default) {
+          typeof type.default === "function"
+            ? (this.resolvedargs[type.id] = type.default())
+            : (this.resolvedargs[type.id] = type.default);
+        } else {
+          flag = true;
+          this.message.channel.embed(
+            `第${i + 1}引数の型が間違っています。: ${type.type}`,
+            "ARGUMENT_TYPE_INVALID",
+            "RED"
+          );
+        }
       }
       i++;
     }
-    
+
     return flag ? undefined : this.resolvedargs;
   }
-  
 
   startCooldown(user) {
     this.cmdCooldown.set(user, this.cooldown);

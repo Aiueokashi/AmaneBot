@@ -1,38 +1,29 @@
 class AmaneModule {
-    constructor(id, { category = 'default' } = {}) {
-        
-        this.id = id;
+  constructor(id, { category = "default" } = {}) {
+    this.id = id;
 
-        
-        this.categoryID = category;
+    this.categoryID = category;
 
-        
-        this.category = null;
+    this.category = null;
 
-        
-        this.filepath = null;
+    this.filepath = null;
 
-        
-        this.client = null;
+    this.client = null;
 
-        
-        this.handler = null;
-    }
+    this.handler = null;
+  }
 
-    
-    reload() {
-        return this.handler.reload(this.id);
-    }
+  reload() {
+    return this.handler.reload(this.id);
+  }
 
-    
-    remove() {
-        return this.handler.remove(this.id);
-    }
+  remove() {
+    return this.handler.remove(this.id);
+  }
 
-    
-    toString() {
-        return this.id;
-    }
+  toString() {
+    return this.id;
+  }
 }
 
 module.exports = AmaneModule;

@@ -42,8 +42,8 @@ Structures.extend(
             client.commands.get(
               client.aliases.get(commandPrefix.toLowerCase())
             );
-          if(this.command.nonparse){
-            this.args = args.join(' ');
+          if (this.command.nonparse) {
+            this.args = args.join(" ");
           }
         }
       }

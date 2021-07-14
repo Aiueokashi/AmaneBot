@@ -11,10 +11,12 @@ class Eval extends Command {
       description: "Evaluate/Execute JavaScript code",
       usage: "eval [...code]",
       args: true,
-      types:[{
-        id:"code",
-        type:"string"
-      }],
+      types: [
+        {
+          id: "code",
+          type: "string",
+        },
+      ],
       nonparse: true,
       category: "Owner",
       cooldown: 0,

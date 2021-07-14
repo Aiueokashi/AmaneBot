@@ -21,6 +21,7 @@ require("./App/KeepAlive");
 //Guild,Message拡張
 require("./Extender/Message");
 require("./Extender/Guild");
+require("./Extender/Channel");
 
 //client拡張
 class Amane extends Client {
