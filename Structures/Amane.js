@@ -70,7 +70,7 @@ class Amane extends Client {
       "851086296889294878",
     ];
 
-    this.emojiDB = ["568120814776614924"];
+    this.emojidb = ["568120814776614924"];
 
     this.emitter = new EventEmmiter();
 
@@ -263,6 +263,13 @@ class Amane extends Client {
         this.databaseCache.guilds.set(guildID, guildData);
         return isLean ? guildData.toJSON() : guildData;
       }
+    }
+  }
+  
+  getEmoji(name){
+    for(const g of this.emojidb){
+    let emoji = this.guilds.cache.get(g).emojis.cache.find(e => e.name === name);
+    return emoji
     }
   }
 

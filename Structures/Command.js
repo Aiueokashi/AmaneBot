@@ -62,8 +62,8 @@ class Command {
         } else {
           flag = true;
           this.message.channel.embed(
-            `第${i + 1}引数の型が間違っています。: ${type.type}`,
-            "ARGUMENT_TYPE_INVALID",
+            `第${i + 1}引数の型が間違っています。\ntype: ${type.type}`,
+            `${this.client.getEmoji("atlanta_warn")}ARGUMENT_TYPE_INVALID`,
             "RED"
           );
         }

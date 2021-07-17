@@ -25,9 +25,10 @@ Structures.extend(
       constructor(guild, data) {
         super(guild, data);
       }
-      embed(d, t = null) {
+      embed(d, t = null, c = null) {
         let embed = new AmaneEmbed();
         t === null ? null : embed.setTitle(t);
+        c === null ? null : embed.setColor(c);
         this.send(embed.setDescription(d));
       }
     }
