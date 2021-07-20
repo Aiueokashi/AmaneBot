@@ -36,6 +36,7 @@ class Amane extends Client {
         },
       },
     };
+    this.baseURL = "https://discord.com/api/v8";
     this.partial = ["GUILD_MEMBER", "USER"];
     this.intents = Intents.ALL;
     //config読み込み
@@ -264,6 +265,9 @@ class Amane extends Client {
         return isLean ? guildData.toJSON() : guildData;
       }
     }
+  }
+  baseHeader (type) {
+    return {"Authorization": "Bot " + this.token,"Content-Type":type}
   }
   
   getEmoji(name){

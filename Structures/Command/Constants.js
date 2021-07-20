@@ -56,8 +56,6 @@ module.exports = {
     EMOJI_MENTION: "emojiMention",
     COMMAND_ALIAS: "commandAlias",
     COMMAND: "command",
-    INHIBITOR: "inhibitor",
-    LISTENER: "listener",
   },
   AmaneHandlerEvents: {
     LOAD: "load",

@@ -95,7 +95,7 @@ class TypeResolver {
         const color = phrase;
         if (!color.startsWith("#")) {
           const Hex_Code = Hex_Colors.find(
-            (c) => c.name.toLowerCase() === color.toLowerCase()
+            (c) => c.name.replace(/\s+/gm,'').toLowerCase() === color.toLowerCase()
           );
           if (Hex_Code === undefined) {
             return null;
@@ -478,7 +478,7 @@ class TypeResolver {
       [ArgumentTypes.COMMAND_ALIAS]: (message, phrase) => {
         if (!phrase) return null;
         return (
-          this.client.commands.get(this.client.aliases.get(phrase)) || null
+          this.client.commands.get(this.client.aliases.get(phrase)) || phrase
         );
       },
 

@@ -26,28 +26,7 @@ class Test extends Command {
   }
 
   async run(message) {
-    //const client = this.client;
-    const responce = await axios.get(
-      "https://discord.com/api/v8/applications/823122293189902336/commands",
-      {
-        headers: {
-          Authorization: "Bot " + process.env.TOKEN,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    console.log(responce.data);
-    /*
-		axios
-			.post(url, json, {
-				headers: {
-					Authorization: 'Bot ' + process.env.TOKEN,
-					'Content-Type': 'application/json'
-				}
-			})
-			.then(res => console.log(res))
-			.catch(e => console.error(e));
-			*/
+super.respond("a")
   }
 }
 

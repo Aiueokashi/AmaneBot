@@ -16,6 +16,7 @@ class Rank extends Command {
         {
           id: "color",
           type: "color",
+          default: "green"
         },
       ],
       category: "一般",
@@ -33,7 +34,7 @@ class Rank extends Command {
     userData.color = Color;
 
     await userData.save();
-    super.respond(`テーマカラーを変更しました: ${Color}`);
+    message.channel.embed(`テーマカラーを変更しました: ${Color}`,'色変更',Color);
   }
 }
 

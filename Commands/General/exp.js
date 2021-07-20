@@ -21,7 +21,8 @@ class Rank extends Command {
     });
   }
 
-  async run(message, [...args], d) {
+  async run(message, args) {
+    const d = message.data;
     let msg = await message.channel.send(
       new AmaneEmbed(d.userData).setTitle(
         "<a:atlanta_loading:743090350490648727>画像を生成中です..."

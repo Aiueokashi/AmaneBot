@@ -33,7 +33,8 @@ class Message {
       true
     );
     data.userData = userData;
-
+    
+    message.data = data;
     message.parse(data);
 
     if (data.guildData.plugins.leveling.enabled) {
@@ -73,42 +74,7 @@ class Message {
     if (message.command.guildOnly && !message.guild) return;
 
     if (message.command.nsfw && !message.channel.nsfw) return;
-
-    if (message.command.args && !message.args.length)
-      return message.channel.send(
-        !message.command.usage || ""
-          ? `${message.author} 引数がありません!`
-          : {
-              embed: {
-                title: `${message.command.name.replace(/\b\w/g, (l) =>
-                  l.toUpperCase()
-                )}`,
-                description: `> ${message.command.description}`,
-                fields: [
-                  {
-                    name: "構文",
-                    value: `\`\`\`${message.command.usage}\`\`\``,
-                  },
-                  {
-                    name: "使用例",
-                    value: `\`\`\`${
-                      (message.command.example &&
-                        message.command.example
-                          .map(
-                            (x) =>
-                              `${
-                                message.guild.prefix ||
-                                this.client.config.prefix
-                              }${message.command.name} ${x}`
-                          )
-                          .join("\n")) ||
-                      "使用例なし"
-                    }\`\`\``,
-                  },
-                ],
-              },
-            }
-      );
+    
     if (message.guild && !client.owners.includes(message.author.id)) {
       const userPerms = message.channel
         .permissionsFor(message.member)
@@ -126,15 +92,12 @@ class Message {
     }
 
     message.command.setMessage(message);
-    if (message.command.args) {
       const t = await message.command.resolve();
       if (t === undefined) {
         return;
       }
-    }
-
     message.command
-      .run(message, message.command.resolvedargs, data)
+      .run(message, message.command.resolvedargs)
       .then((re) => {
         if (message.command.cooldown > 0 && re !== "failed") {
           message.command.startCooldown(message.author.id);

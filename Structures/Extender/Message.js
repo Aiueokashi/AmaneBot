@@ -43,7 +43,7 @@ Structures.extend(
               client.aliases.get(commandPrefix.toLowerCase())
             );
           if (this.command&&this.command.nonparse) {
-            this.args = args.join(" ");
+            this.args = args.join("");
           }
         }
       }

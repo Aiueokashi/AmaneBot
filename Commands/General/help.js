@@ -8,7 +8,13 @@ class Help extends Command {
       description: "ヘルプ表示",
       usage: "help",
       example: [],
-      args: false,
+      args: true,
+      types: [{
+        id:'command',
+        type:'command',
+        subtype:'commandAlias',
+        default:'none'
+      }],
       category: "一般",
       cooldown: 0,
       aliases: [],
@@ -17,14 +23,14 @@ class Help extends Command {
     });
   }
 
-  async run(message, [...args], data) {
+  async run(message, args) {
     const client = this.client;
 
-    if (args[0]) {
-      const COMMAND = client.commands.get(args[0]);
-      if (!COMMAND || COMMAND.ownerOnly) {
+    if (args.command !== 'none'&&args.command !== null) {
+      const COMMAND = args.command;
+      if (typeof COMMAND === "string") {
         return super.respond(
-          "コマンドが見つからなかったよ... :`" + args[0] + "`"
+          "コマンドが見つからなかったよ... :`" + args.command + "`"
         );
       } else {
         let PERMS = [];
@@ -32,18 +38,19 @@ class Help extends Command {
           COMMAND.userPermsNotBit.forEach((p) =>
             PERMS.push(message.member.hasPermission(p) ? `✅${p}` : `❎${p}`)
           );
-          let help_embed = new AmaneEmbed(data.userData)
-            .setTitle(`${COMMAND.name} | カテゴリー:${COMMAND.category}`)
+          let help_embed = new AmaneEmbed(message.data.userData)
+            .setTitle(`${COMMAND.name} | カテゴリー : ${COMMAND.category}`)
             .setDescription(
               COMMAND.description.replace(/<<p>>/gm, message.guild.prefix)
             )
             .addField("引数", COMMAND.args ? "必須" : "不要")
-            .addField(
+            COMMAND.aliases.length ? help_embed.addField('別称(alias)',COMMAND.aliases.join('|')):null;
+            help_embed.addField(
               "使用例",
               `\`\`\`${
                 (COMMAND.example &&
                   COMMAND.example
-                    .map((x) => `${data.guildData.prefix}${COMMAND.name} ${x}`)
+                    .map((x) => `${message.data.guildData.prefix}${COMMAND.name} ${x}`)
                     .join("\n")) ||
                 "使用例なし"
               }\`\`\``
@@ -76,7 +83,7 @@ class Help extends Command {
       var page = getPage(10, COMMANDS);
 
       for (const value of page) {
-        let help_embed = new AmaneEmbed(data.userData).setTitle(
+        let help_embed = new AmaneEmbed(message.data.userData).setTitle(
           `${client.user.tag} | HELP`
         );
         value[1].forEach((v) => {
