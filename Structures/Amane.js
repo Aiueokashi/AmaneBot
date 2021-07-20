@@ -276,11 +276,16 @@ class Amane extends Client {
     return emoji
     }
   }
+  
+  setMainGuild(){
+    this.mainGuild = this.guilds.cache.get("809698616016240661");
+  }
 
   //ログイン
   async login() {
     try {
       await super.login(TOKEN);
+      this.setMainGuild();
       await mongoose.connect(MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
