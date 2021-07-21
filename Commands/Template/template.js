@@ -7,7 +7,7 @@ class Template extends Command {
     super(client, {
       //上に同じく
       name: "template", //コマンドの名前、
-      aliases: ["temp","t"], //上の名前の代わりにこれを使ってもコマンドが実行される
+      aliases: ["temp", "t"], //上の名前の代わりにこれを使ってもコマンドが実行される
       description: "コマンドの説明", //説明、helpコマンドに出てくる
       usage: "template [message] [member]", //使い方(prefixを除いて書く)
       example: ["aaaa @aaa#111", "ああああ 123456790123456"], //下の、argsがtrueになっているのに、コマンドに引数がないとコマンドが実行されず、ここに書いてある具体例が送信される
@@ -39,7 +39,7 @@ class Template extends Command {
   async run(message, args) {
     //ここに実行する処理(ここから先はふつうにコマンド作るときと同じ)
     //const client = this.client; //clientを使いたい場合
-    args.target.user.send(args.str) //super.respond(送信したい内容)で送信できる。この場合、第二引数のメンバーのメンションが送信される。
+    args.target.user.send(args.str); //super.respond(送信したい内容)で送信できる。この場合、第二引数のメンバーのメンションが送信される。
   }
 }
 

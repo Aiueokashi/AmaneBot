@@ -9,12 +9,14 @@ class Help extends Command {
       usage: "help",
       example: [],
       args: true,
-      types: [{
-        id:'command',
-        type:'command',
-        subtype:'commandAlias',
-        default:'none'
-      }],
+      types: [
+        {
+          id: "command",
+          type: "command",
+          subtype: "commandAlias",
+          default: "none",
+        },
+      ],
       category: "一般",
       cooldown: 0,
       aliases: [],
@@ -26,7 +28,7 @@ class Help extends Command {
   async run(message, args) {
     const client = this.client;
 
-    if (args.command !== 'none'&&args.command !== null) {
+    if (args.command !== "none" && args.command !== null) {
       const COMMAND = args.command;
       if (typeof COMMAND === "string") {
         return super.respond(
@@ -43,14 +45,20 @@ class Help extends Command {
             .setDescription(
               COMMAND.description.replace(/<<p>>/gm, message.guild.prefix)
             )
-            .addField("引数", COMMAND.args ? "必須" : "不要")
-            COMMAND.aliases.length ? help_embed.addField('別称(alias)',COMMAND.aliases.join('|')):null;
-            help_embed.addField(
+            .addField("引数", COMMAND.args ? "必須" : "不要");
+          COMMAND.aliases.length
+            ? help_embed.addField("別称(alias)", COMMAND.aliases.join("|"))
+            : null;
+          help_embed
+            .addField(
               "使用例",
               `\`\`\`${
                 (COMMAND.example &&
                   COMMAND.example
-                    .map((x) => `${message.data.guildData.prefix}${COMMAND.name} ${x}`)
+                    .map(
+                      (x) =>
+                        `${message.data.guildData.prefix}${COMMAND.name} ${x}`
+                    )
                     .join("\n")) ||
                 "使用例なし"
               }\`\`\``

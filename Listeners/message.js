@@ -33,7 +33,7 @@ class Message {
       true
     );
     data.userData = userData;
-    
+
     message.data = data;
     message.parse(data);
 
@@ -74,7 +74,7 @@ class Message {
     if (message.command.guildOnly && !message.guild) return;
 
     if (message.command.nsfw && !message.channel.nsfw) return;
-    
+
     if (message.guild && !client.owners.includes(message.author.id)) {
       const userPerms = message.channel
         .permissionsFor(message.member)
@@ -92,17 +92,15 @@ class Message {
     }
 
     message.command.setMessage(message);
-      const t = await message.command.resolve();
-      if (t === undefined) {
-        return;
+    const t = await message.command.resolve();
+    if (t === undefined) {
+      return;
+    }
+    message.command.run(message, message.command.resolvedargs).then((re) => {
+      if (message.command.cooldown > 0 && re !== "failed") {
+        message.command.startCooldown(message.author.id);
       }
-    message.command
-      .run(message, message.command.resolvedargs)
-      .then((re) => {
-        if (message.command.cooldown > 0 && re !== "failed") {
-          message.command.startCooldown(message.author.id);
-        }
-      });
+    });
   }
 }
 

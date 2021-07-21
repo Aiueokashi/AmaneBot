@@ -11,8 +11,6 @@ class Ready {
     client.debug(chalk.bold.bgBlue("CLIENT [READY]: " + client.user.tag));
     await client.loadSlashCommands(client);
     await client.loadGuilds();
-    
-
 
     /*市区町村ファイル生成 (./Json/prefecture.json)*/
 

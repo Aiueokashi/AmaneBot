@@ -266,18 +266,20 @@ class Amane extends Client {
       }
     }
   }
-  baseHeader (type) {
-    return {"Authorization": "Bot " + this.token,"Content-Type":type}
+  baseHeader(type) {
+    return { Authorization: "Bot " + this.token, "Content-Type": type };
   }
-  
-  getEmoji(name){
-    for(const g of this.emojidb){
-    let emoji = this.guilds.cache.get(g).emojis.cache.find(e => e.name === name);
-    return emoji
+
+  getEmoji(name) {
+    for (const g of this.emojidb) {
+      let emoji = this.guilds.cache
+        .get(g)
+        .emojis.cache.find((e) => e.name === name);
+      return emoji;
     }
   }
-  
-  setMainGuild(){
+
+  setMainGuild() {
     this.mainGuild = this.guilds.cache.get("809698616016240661");
   }
 

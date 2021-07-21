@@ -26,7 +26,7 @@ class Test extends Command {
   }
 
   async run(message) {
-super.respond("a")
+    super.respond("a");
   }
 }
 

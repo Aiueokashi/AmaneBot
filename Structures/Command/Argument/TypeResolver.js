@@ -95,7 +95,8 @@ class TypeResolver {
         const color = phrase;
         if (!color.startsWith("#")) {
           const Hex_Code = Hex_Colors.find(
-            (c) => c.name.replace(/\s+/gm,'').toLowerCase() === color.toLowerCase()
+            (c) =>
+              c.name.replace(/\s+/gm, "").toLowerCase() === color.toLowerCase()
           );
           if (Hex_Code === undefined) {
             return null;
