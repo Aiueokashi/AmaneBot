@@ -25,8 +25,16 @@ require("./Extender/Channel");
 
 //client拡張
 class Amane extends Client {
-  constructor(options = {}) {
-    super(options);
+  constructor() {
+    super({
+      http:{
+        version: 8,
+        api: 'https://discord.com/api',
+        cdn: 'https://cdn.discordapp.com',
+        invite: 'https://discord.gg',
+        template: 'https://discord.new',
+      }
+    });
     this.slcUtil = {
       url: "https://discord.com/api/v8/applications/854281955168354335/commands",
       header: {
