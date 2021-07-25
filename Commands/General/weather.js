@@ -53,15 +53,15 @@ class Weather extends Command {
       wea_embed
         .setTitle(data[0].publishingOffice)
         .setDescription(`対象地域: ${area.area.name} (${area.area.code})`)
-        .addField("今日の天気", area.weathers[0], true)
+        .addField("今日の天気", `${area.weathers[0]} | ${this.client.findWeatherCode(area.weatherCodes[0])}`, true)
         .addField("風", area.winds[0], true);
       area.waves ? wea_embed.addField("波", area.waves[0], true) : null;
       wea_embed
-        .addField("明日の天気", area.weathers[1], true)
+        .addField("明日の天気", `${area.weathers[1]} | ${this.client.findWeatherCode(area.weatherCodes[1])}`, true)
         .addField("風", area.winds[1], true);
       area.waves ? wea_embed.addField("波", area.waves[1], true) : null;
       wea_embed
-        .addField("明後日の天気", area.weathers[2], true)
+        .addField("明後日の天気", `${area.weathers[2]} | ${this.client.findWeatherCode(area.weatherCodes[2])}`, true)
         .addField("風", area.winds[2], true);
       area.waves ? wea_embed.addField("波", area.waves[2], true) : null;
       wea_embed.setTimestamp(data[0].reportDatetime);

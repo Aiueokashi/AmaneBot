@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const glob = require("glob");
 
 class Ready {
   constructor(client) {
@@ -12,22 +13,26 @@ class Ready {
     await client.loadSlashCommands(client);
     await client.loadGuilds();
 
-    /*市区町村ファイル生成 (./Json/prefecture.json)*/
-
-    /*const url = "https://madefor.github.io/jisx0401/api/v1/jisx0401-ja.json";
-    const res = await axios.get(url);
-    const data = res.data;
-    let preArray = [];
-    for(const d in data){
-      const url2 = `https://www.land.mlit.go.jp/webland/api/CitySearch?area=${d}`;
-      const resp = await axios.get(url2);
-      delete resp.data.status;
-      preArray.push({name:data[d],id:d,muni_data:resp.data.data})
-    }
-    fs.writeFileSync('prefecture.json',JSON.stringify(preArray))*/
+    //glob("./Assets/Image/output_refs/**/*.png", async (err, files) => {
+      /*if(err) console.error(err);
+      
+      let index = 0;
+      let i = 0
+      for(const file of files){
+        const filename = file.slice(file.lastIndexOf("/") + 1, file.length - 4);
+        client.guilds.cache.get(client.discordDB[i]).emojis.create(file,filename)
+        if(index === 49 ){
+          i++;
+          index = 0;
+        }else{
+          index++;
+        }
+      }
+    })*/
+    
 
     //<<<<<<<<<<<<<<<===================for debug====================>>>>>>>>>>>>>>>>>
-    //console.log(client.commandHandler)
+
   }
 }
 

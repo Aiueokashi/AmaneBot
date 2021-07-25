@@ -77,6 +77,7 @@ class Amane extends Client {
       "851083957809971264",
       "851086175351734282",
       "851086296889294878",
+      "868490553615077427",
     ];
 
     this.emojidb = ["568120814776614924"];
@@ -279,12 +280,26 @@ class Amane extends Client {
   }
 
   getEmoji(name) {
+    let emoji = null;
     for (const g of this.emojidb) {
-      let emoji = this.guilds.cache
+      emoji = this.guilds.cache
         .get(g)
         .emojis.cache.find((e) => e.name === name);
+    }
+    if(emoji !== undefined){
       return emoji;
     }
+  }
+
+  findWeatherCode(name){
+    let emoji = null;
+    for(const g of this.discordDB){
+      emoji = this.guilds.cache.get(g).emojis.cache.find((e) => e.name === name);
+      if(emoji){
+        return emoji;
+      }
+    }
+    return emoji;
   }
 
   setMainGuild() {
