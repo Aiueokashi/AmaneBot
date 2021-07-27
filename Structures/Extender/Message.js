@@ -12,17 +12,13 @@ Structures.extend(
         this.args = [];
       }
       escapeRegex(str) {
-        str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       }
 
       parse(data) {
         const client = this.client;
-        if (this.guild) {
           const prefixRegex = new RegExp(
-            `^(<@!?${this.client.user.id}>|${this.escapeRegex(
-              data.guildData.prefix
-            )})`
-          );
+            `^(<@!?${this.client.user.id}>|${this.guild ? this.escapeRegex(data.guildData.prefix) : this.escapeRegex(this.client.config.prefix)})`);
           this._isCommand = prefixRegex.test(this.content);
           if (!this._isCommand) return;
 
@@ -43,9 +39,8 @@ Structures.extend(
               client.aliases.get(commandPrefix.toLowerCase())
             );
           if (this.command && this.command.nonparse) {
-            this.args = args.join("");
+            this.args = args.join(" ");
           }
-        }
       }
       checkEmoji() {
         if (this.channel.type == "dm") {

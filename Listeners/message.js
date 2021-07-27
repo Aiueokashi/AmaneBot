@@ -5,6 +5,9 @@ class Message {
   }
 
   async run(message) {
+    if(this.client.emojidb.includes(message.guild.id)){
+      return;
+    }
     const client = this.client;
     client.debug(client.chalk.bold.green(`Message: (${message.id})`));
     const data = {};
