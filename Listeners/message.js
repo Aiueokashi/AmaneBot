@@ -51,6 +51,29 @@ class Message {
         }
       }
     }
+    if(message.mentions.members.keyArray() !== []){
+      const mems = message.mentions.members.keyArray();
+      for await(const m of mems){
+        const u = await client.findOrCreateUser({id:m},true);
+        if(u.afk){
+          message.channel.embed(`理由: ${u.afk}`,"あなたがメンションしたユーザーは離席中です。",data.userData.color)
+        }
+      }
+    }
+    if (data.userData.afk !== null) {
+      let d = await client.findOrCreateUser({ id: message.author.id });
+      message
+        .channel.send({
+          embed: {
+            title: "AFK解除",
+            color: message.data.userData.color,
+            description: '発言したためAFKが解除されました'
+          }
+        })
+        .then((msg) => msg.delete({ timeout: 10000 }))
+      d.afk = null;
+      await d.save();
+    }
 
     if (!message.command) return;
     if (message.command.disable) return;
