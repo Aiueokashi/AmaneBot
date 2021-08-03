@@ -12,6 +12,7 @@ module.exports = {
   },
   ArgumentTypes: {
     STRING: "string",
+    BOOLEAN: "boolean",
     LOWERCASE: "lowercase",
     UPPERCASE: "uppercase",
     CHAR_CODES: "charCodes",

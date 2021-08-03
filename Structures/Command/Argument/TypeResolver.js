@@ -20,6 +20,14 @@ class TypeResolver {
         return phrase || null;
       },
 
+      [ArgumentTypes.BOOLEAN]: (message, phrase) => {
+        if(phrase === "true"){
+          return true
+        }else if(phrase === "false"){
+          return false
+        }
+      },
+
       [ArgumentTypes.LOWERCASE]: (message, phrase) => {
         return phrase ? phrase.toLowerCase() : null;
       },

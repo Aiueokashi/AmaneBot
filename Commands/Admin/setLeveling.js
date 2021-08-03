@@ -33,6 +33,7 @@ class Leveling extends Command {
         return super.respond("既にオンです");
       } else {
         guildData.plugins.leveling.enabled = true;
+        guildData.markModified("plugins.leveling.enabled");
         await guildData.save();
         return super.respond("設定をオンにしました。");
       }
@@ -41,6 +42,7 @@ class Leveling extends Command {
         return super.respond("既にオフです");
       } else {
         guildData.plugins.leveling.enabled = false;
+        guildData.markModified("plugins.leveling.enabled");
         await guildData.save();
         return super.respond("設定をオフにしました。");
       }

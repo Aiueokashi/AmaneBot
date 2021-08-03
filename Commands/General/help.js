@@ -24,7 +24,8 @@ class Help extends Command {
         ],
         async run(interaction, args) {
           const a = { command: client.commands.get(args[0]?.value) ?? "none" };
-          client.commands.get(this.name).run(interaction, a);
+            client.commands.get(this.name).run(interaction, a);
+          
         },
       },
       types: [
@@ -85,7 +86,7 @@ class Help extends Command {
         super.respond({ embeds: [help_embed] });
       }
     } else {
-      const COMMANDS = client.commands.array();
+      const COMMANDS = client.commands.filter(c => c.ownerOnly === false).array();
       const Embed_Array = new Array();
 
       function* getPage(pageSize = 1, list) {
@@ -128,12 +129,12 @@ class Help extends Command {
       }
       const button1 = new MessageButton()
         .setLabel("Previous")
-        .setCustomID("previousbtn")
+        .setCustomID(this.client.util.createCustomId(20))
         .setStyle("DANGER");
 
       const button2 = new MessageButton()
         .setLabel("Next")
-        .setCustomID("nextbtn")
+        .setCustomID(this.client.util.createCustomId(20))
         .setStyle("SUCCESS");
       const buttonList = [button1, button2];
 

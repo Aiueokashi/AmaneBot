@@ -19,8 +19,12 @@ const PaginatedEmbed = async (msg, pages, buttonList, timeout = 120000) => {
   if (!msg instanceof MessageEmbed) {
     msg.reply(msg.client.getEmoji("atlanta_loading"));
   }
-  const curPage = msg.channel
-    .send({
+  if(msg.commandName){
+    return msg.reply(
+      {embeds:pages,
+    ephemeral: true})
+  }
+  const curPage = msg.reply({
       embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
       components: [row],
     })
@@ -29,12 +33,12 @@ const PaginatedEmbed = async (msg, pages, buttonList, timeout = 120000) => {
         curPage.edit({
           embeds: [pages[page].setFooter(`Page ${page + 1} / ${pages.length}`)],
           components: [row],
-        });
+        })
       }
 
-      const filter = (m) => m.user.id === msg.author?.id ?? msg.user.id;
+      const filter = (m) => (m.user.id === msg.author?.id ?? msg.user.id) && (buttonList[0].customID === m.customID || buttonList[1].customID === m.customID)
 
-      const collector = curPage.createMessageComponentCollector({
+      const collector = msg.channel.createMessageComponentCollector({
         filter,
         time: timeout,
       });
@@ -56,7 +60,7 @@ const PaginatedEmbed = async (msg, pages, buttonList, timeout = 120000) => {
       });
 
       collector.on("end", () => {
-        if (!curPage.deleted) {
+        try{
           const disabledRow = new MessageActionRow().addComponents(
             buttonList[0].setDisabled(true),
             buttonList[1].setDisabled(true)
@@ -67,6 +71,8 @@ const PaginatedEmbed = async (msg, pages, buttonList, timeout = 120000) => {
             ],
             components: [disabledRow],
           });
+        }catch(e){
+          console.log(e);
         }
       });
 
