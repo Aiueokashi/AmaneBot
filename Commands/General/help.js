@@ -1,6 +1,6 @@
 const Command = require("../../Structures/Command");
 const { AmaneEmbed, PaginatedEmbed } = require("../../Structures/Embed");
-const { MessageButton } = require("discord.js");
+const { MessageButton } = require("okashidjs");
 
 class Help extends Command {
   constructor(client) {

@@ -1,4 +1,4 @@
-const Structures = require("../Utils/Structures");
+const { Structures } = require("okashidjs");
 mongoose = require("mongoose");
 //YTDLCore = require("../YTDL/Player"),
 const TTSPlayer = require("../TTS/Player");

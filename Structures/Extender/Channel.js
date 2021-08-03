@@ -1,4 +1,4 @@
-const Structures = require("../Utils/Structures");
+const { Structures } = require("okashidjs");
 const { AmaneEmbed } = require("../Embed");
 
 //Guildクラス拡張

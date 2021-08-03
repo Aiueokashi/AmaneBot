@@ -3,7 +3,7 @@ const {
   Message,
   MessageEmbed,
   MessageButton,
-} = require("discord.js");
+} = require("okashidjs");
 
 const PaginatedEmbed = async (msg, pages, buttonList, timeout = 120000) => {
   if (!msg && !msg.channel) throw new Error("チャンネルがありません");
@@ -34,7 +34,7 @@ const PaginatedEmbed = async (msg, pages, buttonList, timeout = 120000) => {
 
       const filter = (m) => m.user.id === msg.author?.id ?? msg.user.id;
 
-      const collector = curPage.createMessageComponentInteractionCollector({
+      const collector = curPage.createMessageComponentCollector({
         filter,
         time: timeout,
       });

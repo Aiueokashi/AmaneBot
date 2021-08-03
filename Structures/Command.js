@@ -1,4 +1,4 @@
-const { Permissions, MessageAttachment, MessageEmbed } = require("discord.js"),
+const { Permissions, MessageAttachment, MessageEmbed } = require("okashidjs"),
   TypeResolver = require("./Command/Argument/TypeResolver"),
   EventEmitter = require("events"),
   axios = require("axios"),

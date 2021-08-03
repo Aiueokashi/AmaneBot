@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageButton } = require("discord.js");
+const { MessageEmbed, MessageButton } = require("okashidjs");
 
 module.exports = async (message) => {
   if (!message)

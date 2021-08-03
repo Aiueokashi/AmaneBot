@@ -1,5 +1,5 @@
 const canvacord = require("canvacord");
-const { MessageAttachment } = require("discord.js");
+const { MessageAttachment } = require("okashidjs");
 
 class GuildMemberAdd {
   constructor(client) {

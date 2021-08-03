@@ -1,4 +1,4 @@
-const Structures = require("../Utils/Structures"),
+const { Structures } = require("okashidjs"),
   { findBestMatch } = require("string-similarity"),
   mongoose = require("mongoose");
 

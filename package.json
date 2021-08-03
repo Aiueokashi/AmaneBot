@@ -39,6 +39,8 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "mongoose": "^5.12.12",
+    "okashidjs": "0.0.0",
+    "okashijs": "0.0.0",
     "request": "^2.88.2",
     "serp": "^2.1.0",
     "simple-youtube-api": "^5.2.1",

@@ -1,4 +1,4 @@
-const { Client, Collection, Intents } = require("discord.js"),
+const { Client, Collection, Intents } = require("okashidjs"),
   chalk = require("chalk"),
   path = require("path"),
   glob = require("glob"),

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("okashidjs");
 
 module.exports = class AmaneEmbed extends MessageEmbed {
   constructor(userData, data = {}, category = null) {
