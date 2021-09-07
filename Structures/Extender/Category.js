@@ -1,27 +1,27 @@
-const { Collection } = require('discord.js');
+const { Collection } = require("discord.js");
 
-class Category extends Collection{
-  constructor(id,iterable){
+class Category extends Collection {
+  constructor(id, iterable) {
     super(iterable);
     this.id = id;
   }
   reloadAll() {
-        for (const m of Array.from(this.values())) {
-            if (m.filepath) m.reload();
-        }
-
-        return this;
+    for (const m of Array.from(this.values())) {
+      if (m.filepath) m.reload();
     }
+
+    return this;
+  }
   removeAll() {
-        for (const m of Array.from(this.values())) {
-            if (m.filepath) m.remove();
-        }
+    for (const m of Array.from(this.values())) {
+      if (m.filepath) m.remove();
+    }
 
-        return this;
-    }
+    return this;
+  }
   toString() {
-        return this.id;
-    }
+    return this.id;
+  }
 }
 
 module.exports = Category;

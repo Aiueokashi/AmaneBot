@@ -1,0 +1,20 @@
+{
+  "files": {
+    "Structures/Command.js": [
+      {
+        "id": "fd47fb4d-5593-4a13-9911-f70a681710a0",
+        "line": 185,
+        "version": 5589,
+        "index": 5912
+      }
+    ],
+    "Structures/Utils/Calculator.js": [
+      {
+        "id": "a2bcaa4b-9f8a-4359-8e91-3d4daaa1c77e",
+        "line": 298,
+        "version": 389,
+        "index": 8291
+      }
+    ]
+  }
+}

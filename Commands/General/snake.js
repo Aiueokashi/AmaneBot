@@ -15,7 +15,7 @@ class SnakeCommand extends Command {
       permLevel: 10,
       disable: false,
       guildOnly: true,
-      ownerOnly:true,
+      ownerOnly: true,
     });
   }
 

@@ -9,9 +9,9 @@ const { Client, Collection, Intents } = require("okashidjs"),
   mongoose = require("mongoose"),
   EventEmmiter = require("events"),
   Util = require("./Utils/Util"),
-  //CommandHandler = require("./Command/CommandHandler"),
   //{ stripIndents } = require('common-tags'),
-  cli = require("cli-progress");
+  cli = require("cli-progress"),
+  { Player } = require("discord-music-player");
 
 //console.log()拡張
 require("./Extender/Console");
@@ -26,14 +26,7 @@ require("./Extender/Channel");
 class Amane extends Client {
   constructor() {
     super({
-      http: {
-        version: 8,
-        api: "https://discord.com/api",
-        cdn: "https://cdn.discordapp.com",
-        invite: "https://discord.gg",
-        template: "https://discord.new",
-      },
-      partial: ["GUILD_MEMBER", "USER", "REACTION"],
+      partial: ["USER", "GUILD_MEMBER", "MESSAGE", "CHANNEL", "REACTION"],
       intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
     });
     this.slcUtil = {
@@ -80,6 +73,8 @@ class Amane extends Client {
     this.emojidb = ["568120814776614924"];
 
     this.emitter = new EventEmmiter();
+    
+    this.player = new Player(this,{leaveOnEmpty: false});
 
     this.multibar = new cli.MultiBar(
       {

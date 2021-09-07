@@ -91,7 +91,10 @@ class MessageCreate {
     if (!message.command) return;
     if (message.command.disable) return;
     message.command.isSlash = false;
-    if (message.command.cmdCooldown.has(message.author.id)&&!client.owners.includes(message.author.id))
+    if (
+      message.command.cmdCooldown.has(message.author.id) &&
+      !client.owners.includes(message.author.id)
+    )
       return message.reply(
         "`<<cmd>>`コマンドは`<<time>>`秒に1回だけ使えます。"
           .replace(

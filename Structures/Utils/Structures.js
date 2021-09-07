@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * An extendable structure:
@@ -38,8 +38,10 @@ class Structures extends null {
    * @returns {Function}
    */
   static get(structure) {
-    if (typeof structure === 'string') return structures[structure];
-    throw new TypeError(`"structure" argument must be a string (received ${typeof structure})`);
+    if (typeof structure === "string") return structures[structure];
+    throw new TypeError(
+      `"structure" argument must be a string (received ${typeof structure})`
+    );
   }
 
   /**
@@ -65,26 +67,33 @@ class Structures extends null {
    * });
    */
   static extend(structure, extender) {
-    if (!structures[structure]) throw new RangeError(`"${structure}" is not a valid extensible structure.`);
-    if (typeof extender !== 'function') {
+    if (!structures[structure])
+      throw new RangeError(
+        `"${structure}" is not a valid extensible structure.`
+      );
+    if (typeof extender !== "function") {
       const received = `(received ${typeof extender})`;
       throw new TypeError(
-        `"extender" argument must be a function that returns the extended structure class/prototype ${received}.`,
+        `"extender" argument must be a function that returns the extended structure class/prototype ${received}.`
       );
     }
 
     const extended = extender(structures[structure]);
-    if (typeof extended !== 'function') {
+    if (typeof extended !== "function") {
       const received = `(received ${typeof extended})`;
-      throw new TypeError(`The extender function must return the extended structure class/prototype ${received}.`);
+      throw new TypeError(
+        `The extender function must return the extended structure class/prototype ${received}.`
+      );
     }
 
     if (!(extended.prototype instanceof structures[structure])) {
       const prototype = Object.getPrototypeOf(extended);
-      const received = `${extended.name ?? 'unnamed'}${prototype.name ? ` extends ${prototype.name}` : ''}`;
+      const received = `${extended.name ?? "unnamed"}${
+        prototype.name ? ` extends ${prototype.name}` : ""
+      }`;
       throw new Error(
-        'The class/prototype returned from the extender function must extend the existing structure class/prototype' +
-          ` (received function ${received}; expected extension of ${structures[structure].name}).`,
+        "The class/prototype returned from the extender function must extend the existing structure class/prototype" +
+          ` (received function ${received}; expected extension of ${structures[structure].name}).`
       );
     }
 
@@ -94,29 +103,30 @@ class Structures extends null {
 }
 
 const structures = {
-  GuildEmoji: require('../../node_modules/discord.js/src/structures/GuildEmoji'),
-  DMChannel: require('../../node_modules/discord.js/src/structures/DMChannel'),
-  TextChannel: require('../../node_modules/discord.js/src/structures/TextChannel'),
-  VoiceChannel: require('../../node_modules/discord.js/src/structures/VoiceChannel'),
-  CategoryChannel: require('../../node_modules/discord.js/src/structures/CategoryChannel'),
-  NewsChannel: require('../../node_modules/discord.js/src/structures/NewsChannel'),
-  StoreChannel: require('../../node_modules/discord.js/src/structures/StoreChannel'),
-  StageChannel: require('../../node_modules/discord.js/src/structures/StageChannel'),
-  ThreadChannel: require('../../node_modules/discord.js/src/structures/ThreadChannel'),
-  GuildMember: require('../../node_modules/discord.js/src/structures/GuildMember'),
-  ThreadMember: require('../../node_modules/discord.js/src/structures/ThreadMember'),
-  Guild: require('../../node_modules/discord.js/src/structures/Guild'),
-  Message: require('../../node_modules/discord.js/src/structures/Message'),
-  MessageReaction: require('../../node_modules/discord.js/src/structures/MessageReaction'),
-  Presence: require('../../node_modules/discord.js/src/structures/Presence').Presence,
-  ClientPresence: require('../../node_modules/discord.js/src/structures/ClientPresence'),
-  VoiceState: require('../../node_modules/discord.js/src/structures/VoiceState'),
-  Role: require('../../node_modules/discord.js/src/structures/Role'),
-  User: require('../../node_modules/discord.js/src/structures/User'),
-  CommandInteraction: require('../../node_modules/discord.js/src/structures/CommandInteraction'),
-  ButtonInteraction: require('../../node_modules/discord.js/src/structures/ButtonInteraction'),
-  SelectMenuInteraction: require('../../node_modules/discord.js/src/structures/SelectMenuInteraction'),
-  StageInstance: require('../../node_modules/discord.js/src/structures/StageInstance'),
+  GuildEmoji: require("../../node_modules/discord.js/src/structures/GuildEmoji"),
+  DMChannel: require("../../node_modules/discord.js/src/structures/DMChannel"),
+  TextChannel: require("../../node_modules/discord.js/src/structures/TextChannel"),
+  VoiceChannel: require("../../node_modules/discord.js/src/structures/VoiceChannel"),
+  CategoryChannel: require("../../node_modules/discord.js/src/structures/CategoryChannel"),
+  NewsChannel: require("../../node_modules/discord.js/src/structures/NewsChannel"),
+  StoreChannel: require("../../node_modules/discord.js/src/structures/StoreChannel"),
+  StageChannel: require("../../node_modules/discord.js/src/structures/StageChannel"),
+  ThreadChannel: require("../../node_modules/discord.js/src/structures/ThreadChannel"),
+  GuildMember: require("../../node_modules/discord.js/src/structures/GuildMember"),
+  ThreadMember: require("../../node_modules/discord.js/src/structures/ThreadMember"),
+  Guild: require("../../node_modules/discord.js/src/structures/Guild"),
+  Message: require("../../node_modules/discord.js/src/structures/Message"),
+  MessageReaction: require("../../node_modules/discord.js/src/structures/MessageReaction"),
+  Presence: require("../../node_modules/discord.js/src/structures/Presence")
+    .Presence,
+  ClientPresence: require("../../node_modules/discord.js/src/structures/ClientPresence"),
+  VoiceState: require("../../node_modules/discord.js/src/structures/VoiceState"),
+  Role: require("../../node_modules/discord.js/src/structures/Role"),
+  User: require("../../node_modules/discord.js/src/structures/User"),
+  CommandInteraction: require("../../node_modules/discord.js/src/structures/CommandInteraction"),
+  ButtonInteraction: require("../../node_modules/discord.js/src/structures/ButtonInteraction"),
+  SelectMenuInteraction: require("../../node_modules/discord.js/src/structures/SelectMenuInteraction"),
+  StageInstance: require("../../node_modules/discord.js/src/structures/StageInstance"),
 };
 
 module.exports = Structures;

@@ -40,6 +40,7 @@ module.exports = async (message) => {
   let calculator_backspace = i(20);
   let calc_irrc = i(20);
   let empty_irrc = i(20);
+  let empty_2 = i(20);
   let calc_percent = i(20);
   let ac = new MessageButton()
     .setLabel("AC")
@@ -134,6 +135,11 @@ module.exports = async (message) => {
     .setCustomID(empty_irrc)
     .setStyle("SECONDARY")
     .setDisabled(true);
+  let empty2 = new MessageButton()
+    .setLabel("\u200b")
+    .setCustomID(empty_2)
+    .setStyle("SECONDARY")
+    .setDisabled(true)
   let percent = new MessageButton()
     .setLabel("%")
     .setCustomID(calc_percent)
@@ -278,7 +284,7 @@ module.exports = async (message) => {
         [seven, eight, nine, slash, destroy],
         [four, five, six, star, backspace],
         [one, two, three, minus, empty],
-        [dot, zero, equal, plus, empty],
+        [dot, zero, equal, plus, empty2],
       ],
     })
     .then(async (msg) => {
@@ -302,7 +308,7 @@ module.exports = async (message) => {
             [seven, eight, nine, slash, destroy],
             [four, five, six, star, backspace],
             [one, two, three, minus, empty],
-            [dot, zero, equal, plus, empty],
+            [dot, zero, equal, plus, empty2],
           ],
         });
         iserr = false;
@@ -327,11 +333,11 @@ module.exports = async (message) => {
             [qseven, qeight, qnine, qslash, qdestroy],
             [qfour, qfive, qsix, qstar, qbackspace],
             [qone, qtwo, qthree, qminus, empty],
-            [qdot, qzero, qequal, qplus, empty],
+            [qdot, qzero, qequal, qplus, empty2],
           ],
         });
       }
-      const calc = msg.createMessageComponentInteractionCollector({ filter });
+      const calc = msg.createMessageComponentCollector({ filter });
 
       calc.on("collect", async (btn) => {
         if (btn.user.id !== message.author.id) {

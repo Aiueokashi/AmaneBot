@@ -27,6 +27,8 @@ const ErrMsg = {
     )}である必要があります。渡された型:${chalk.err(type)}`,
   INVALID_SLASHCOMMAND_TYPE: (filename) =>
     `${chalk.err(filename)}を正常に読み込めません。`,
+  CANNOT_FIND_QUEUE: (guild) => `キューが作成されていません:${chalk.err(guild.name)}(${chalk.err(guild.id)})`,
+  ALREADY_CREATED_QUEUE: (guild) => `既にキューが作成されています:${chalk.err(guild.name)}(${chalk.err(guild.id)})`
 };
 //Errorを拡張
 class AmaneError extends Error {

@@ -8,13 +8,16 @@ class React extends Command {
       usage: "react [string] <messageID>",
       example: ["pro 1234567890123", "nice 1234567890123"],
       args: true,
-      types:[{
-        id:'emoji',
-        type:'string',
-      },{
-        id:'message',
-        type:'message',
-      }],
+      types: [
+        {
+          id: "emoji",
+          type: "string",
+        },
+        {
+          id: "message",
+          type: "message",
+        },
+      ],
       category: "一般",
       cooldown: 1000,
       aliases: [],

@@ -24,8 +24,7 @@ class Help extends Command {
         ],
         async run(interaction, args) {
           const a = { command: client.commands.get(args[0]?.value) ?? "none" };
-            client.commands.get(this.name).run(interaction, a);
-          
+          client.commands.get(this.name).run(interaction, a);
         },
       },
       types: [
@@ -83,10 +82,12 @@ class Help extends Command {
           )
           .addField(`ユーザーに必要な権限`, PERMS.join(""))
           .addField("状態", COMMAND.disable ? "メンテナンス中" : "利用可能");
-        super.respond({ embeds: [help_embed] });
+        super.respond({ embeds: [help_embed] }, true);
       }
     } else {
-      const COMMANDS = client.commands.filter(c => c.ownerOnly === false).array();
+      const COMMANDS = client.commands
+        .filter((c) => c.ownerOnly === false)
+        .array();
       const Embed_Array = new Array();
 
       function* getPage(pageSize = 1, list) {

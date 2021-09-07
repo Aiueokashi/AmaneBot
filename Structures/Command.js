@@ -139,8 +139,20 @@ class Command {
     this.interaction = interaction;
   }
 
-  async respond(content) {
-    if (this.isSlash) {
+  async respond(content, ephemeral) {
+    if (this.isSlash && ephemeral) {
+      if (typeof content === "string") {
+        const msg = await this.interaction.reply({
+          content: content,
+          ephemeral: true,
+        });
+        return msg;
+      } else if (typeof content === "object") {
+        Object.assign(content, { ephemeral: true });
+        const msg = await this.interaction.reply(content);
+        return msg;
+      }
+    } else if (this.isSlash) {
       if (typeof content === "string") {
         const msg = await this.interaction.reply({
           content: content,

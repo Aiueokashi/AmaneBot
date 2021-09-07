@@ -11,8 +11,8 @@ module.exports = class AmaneEmbed extends MessageEmbed {
 
   setDescriptionFromBlockArray(blocks) {
     this.description = blocks
-      .map(lines => lines.filter(l => !!l).join("\n"))
-      .filter(b => !!b.length)
+      .map((lines) => lines.filter((l) => !!l).join("\n"))
+      .filter((b) => !!b.length)
       .join("\n\n");
     return this;
   }

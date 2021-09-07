@@ -27,7 +27,11 @@ class YTDLCore {
       });
     }
     let stream;
-    let streamType = song ? song.url.includes("youtube.com") ? "opus" : "ogg/opus" : null;
+    let streamType = song
+      ? song.url.includes("youtube.com")
+        ? "opus"
+        : "ogg/opus"
+      : null;
     try {
       stream = await ytdl(song.url, { highWaterMark: 1 << 25 });
     } catch (e) {
@@ -184,7 +188,9 @@ class YTDLCore {
     });
 
     collector.on("end", () => {
-      playingMessage ? playingMessage.reactions.removeAll().catch(console.error) : null;
+      playingMessage
+        ? playingMessage.reactions.removeAll().catch(console.error)
+        : null;
       if (queue.pruning && playingMessage && !playingMessage.deleted) {
         playingMessage.delete({ timeout: 3000 }).catch(console.error);
       }

@@ -11,10 +11,12 @@ class Eval extends Command {
       description: "Evaluate/Execute JavaScript code",
       usage: "eval [...code]",
       args: true,
-      types:[{
-        id:"code",
-        type:"string"
-      }],
+      types: [
+        {
+          id: "code",
+          type: "string",
+        },
+      ],
       nonparse: true,
       category: "Owner",
       cooldown: 0,
@@ -30,14 +32,14 @@ class Eval extends Command {
         evaled = require("util").inspect(evaled, { depth: 0 });
       if (evaled.includes(this.client.token))
         evaled = evaled.replace(this.client.token, "gm", "*Token*");
-      message.channel.send({content:`\`\`\`js\n${evaled}\`\`\``});
+      message.channel.send({ content: `\`\`\`js\n${evaled}\`\`\`` });
     } catch (error) {
       let errorDetails = error.toString();
 
       if (errorDetails.includes(this.client.token))
         errorDetails = errorDetails.replace(this.client.token, "gm", "*Token*");
 
-      message.channel.send({content:`\`\`\`js\n${errorDetails}\`\`\``});
+      message.channel.send({ content: `\`\`\`js\n${errorDetails}\`\`\`` });
     } finally {
       const log = ` USE OF EVAL by ${message.author.username} ( ${message.author.id} )`;
 
