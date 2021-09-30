@@ -1,7 +1,7 @@
 const { Structures } = require("okashidjs");
-mongoose = require("mongoose"),
-YTDLPlayer = require("../newYTDL/Player"),
-TTSPlayer = require("../TTS/Player");
+(mongoose = require("mongoose")),
+  (YTDLPlayer = require("../newYTDL/Player")),
+  (TTSPlayer = require("../TTS/Player"));
 
 //Guildクラス拡張
 Structures.extend(

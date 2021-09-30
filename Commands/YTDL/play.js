@@ -20,8 +20,7 @@ class Play extends Command {
         options: [
           {
             name: "music",
-            description:
-              "曲の名前か、YoutubeのURL",
+            description: "曲の名前か、YoutubeのURL",
             required: true,
             type: 3,
           },
@@ -31,10 +30,12 @@ class Play extends Command {
           client.commands.get(this.name).run(interaction, a);
         },
       },
-      types:[{
-        id:"song",
-        type:"string"
-      }],
+      types: [
+        {
+          id: "song",
+          type: "string",
+        },
+      ],
       category: "YTDL",
       cooldown: 1000,
       aliases: ["p"],
@@ -46,17 +47,16 @@ class Play extends Command {
   }
 
   async run(message, args) {
-    let queue
+    let queue;
     const player = message.guild.ytdlPlayer;
     player.createQueue();
-    try{
+    try {
       queue = await player.join(message);
-    }catch(e){
-      super.respond("ボイスチャンネルに接続してください。",true);
-      console.log(e)
+    } catch (e) {
+      super.respond("ボイスチャンネルに接続してください。", true);
+      console.log(e);
     }
-      queue.play(args.song);
-    
+    queue.play(args.song);
   }
 }
 
