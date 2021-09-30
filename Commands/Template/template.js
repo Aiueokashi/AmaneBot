@@ -39,7 +39,7 @@ class Template extends Command {
   async run(message, args) {
     //ここに実行する処理(ここから先はふつうにコマンド作るときと同じ)
     //const client = this.client; //clientを使いたい場合
-    args.target.user.send(args.str); //super.respond(送信したい内容)で送信できる。この場合、第二引数のメンバーのメンションが送信される。
+    args.target.user.send(args.str); //super.respond(送信したい内容)で送信できる。この場合、第二引数のメンバーに第一引数の文字列が送信される。
   }
 }
 

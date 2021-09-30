@@ -1,7 +1,7 @@
 const { Structures } = require("okashidjs");
-mongoose = require("mongoose");
-//YTDLCore = require("../YTDL/Player"),
-const TTSPlayer = require("../TTS/Player");
+mongoose = require("mongoose"),
+YTDLPlayer = require("../newYTDL/Player"),
+TTSPlayer = require("../TTS/Player");
 
 //Guildクラス拡張
 Structures.extend(
@@ -11,6 +11,7 @@ Structures.extend(
       constructor(client, data) {
         super(client, data);
         this.ttsPlayer = new TTSPlayer(this);
+        this.ytdlPlayer = new YTDLPlayer(this);
       }
       async setPrefix() {
         const p = await this.client.findOrCreateGuild({ id: this.id }, true);

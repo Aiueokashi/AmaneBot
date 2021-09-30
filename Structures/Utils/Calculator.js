@@ -139,7 +139,7 @@ module.exports = async (message) => {
     .setLabel("\u200b")
     .setCustomID(empty_2)
     .setStyle("SECONDARY")
-    .setDisabled(true)
+    .setDisabled(true);
   let percent = new MessageButton()
     .setLabel("%")
     .setCustomID(calc_percent)

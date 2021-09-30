@@ -1,5 +1,7 @@
 const chalk = require("chalk");
 const glob = require("glob");
+const fetch = require("discord-fetch-all");
+const fs = require("fs")
 
 class Ready {
   constructor(client) {

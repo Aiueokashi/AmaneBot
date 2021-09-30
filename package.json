@@ -27,6 +27,7 @@
     "chalk": "^4.1.1",
     "cli-progress": "^3.9.0",
     "common-tags": "^1.8.0",
+    "discord-fetch-all": "^3.0.2",
     "discord-music-player": "^8.0.2",
     "discord-tts": "^1.1.0",
     "discord.js": "^13.0.0-dev.5842e35.1625011425",

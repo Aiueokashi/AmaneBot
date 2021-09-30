@@ -73,8 +73,8 @@ class Amane extends Client {
     this.emojidb = ["568120814776614924"];
 
     this.emitter = new EventEmmiter();
-    
-    this.player = new Player(this,{leaveOnEmpty: false});
+
+    this.player = new Player(this, { leaveOnEmpty: false });
 
     this.multibar = new cli.MultiBar(
       {
